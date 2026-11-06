@@ -1,0 +1,39 @@
+.text-xs {
+    font-size: calc(var(--font-size-min) * 0.5);
+}
+
+.text-sm {
+    font-size: calc(var(--font-size-min) * 0.7);
+}
+
+.text-md {
+    font-size: calc(var(--font-size-min) * 1);
+}
+
+.text-lg {
+    font-size: calc(var(--font-size-min) * 1.5);
+}
+
+.text-xl {
+    font-size: calc(var(--font-size-min) * 2);
+}
+
+.text-2xl {
+    font-size: calc(var(--font-size-min) * 2.5);
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 500;
+}
+
+.font-medium {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 800;
+}
