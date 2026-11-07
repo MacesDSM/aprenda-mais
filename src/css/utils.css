@@ -1,39 +1,48 @@
+/*
+ * Folha de estilo com classe utilitárias para
+ * Formatos de textos, tamanhos etc.
+ */
 .text-xs {
     font-size: calc(var(--font-size-min) * 0.5);
 }
-
 .text-sm {
     font-size: calc(var(--font-size-min) * 0.7);
 }
-
 .text-md {
     font-size: calc(var(--font-size-min) * 1);
 }
-
 .text-lg {
     font-size: calc(var(--font-size-min) * 1.5);
 }
-
 .text-xl {
     font-size: calc(var(--font-size-min) * 2);
 }
-
 .text-2xl {
     font-size: calc(var(--font-size-min) * 2.5);
 }
-
 .font-light {
     font-weight: 300;
 }
-
 .font-normal {
+    font-weight: 400;
+}
+.font-medium {
     font-weight: 500;
 }
-
-.font-medium {
+.font-semibold {
     font-weight: 600;
 }
-
 .font-bold {
+    font-weight: 700;
+}
+.font-extrabold {
     font-weight: 800;
+}
+.font-black {
+    font-weight: 900;
+}
+
+/* Cores */
+.text-secondary-600 {
+    color: var(--secondary-color-600);
 }

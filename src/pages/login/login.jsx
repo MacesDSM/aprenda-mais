@@ -1,15 +1,29 @@
+import { useState } from "react";
+import { UsuarioService } from "../../service";
+import { Eye, EyeOff, LockKeyhole, IdCard } from "lucide-react";
 import styles from "./login.module.css";
 
-function login(req) {
-    
+function logar(event) {
+    const service = new UsuarioService();
 
-    //
+    const dados = service.getFormObject(event);
 
-    service.save({nome: "TEste", email: "123456"});
+    const logado = service.logar(dados);
+    if(logado) {
+        window.alert(`Conta logada com sucesso!`);
+    } else {
+        window.alert("Login ou senha inválidos")
+    }
+
+    event.preventDefault();
 }
 
-
 export function Login() {
+    const [verSenha, setVerSenha] = useState(false);
+
+    function toggleVerSenha() {
+        setVerSenha(prev=>!prev);
+    }
 
     return (
         <section className={styles.main}>
@@ -35,23 +49,34 @@ export function Login() {
                 <div className={styles.painelDireita}>
                     <div>
                         <div>
-                            <p className="text-md font-medium">Acesse sua conta</p>
+                            <p className="text-md font-semibold">Acesse sua conta</p>
                             <p className="text-sm font-light">Continue seus estudos gratuitos e acompanhe suas indicações de cursos.</p>
                         </div>
-                        <form>
+                        <form onSubmit={logar}>
                             <div className={styles.formField}>
-                                <p>Email</p>
-                                <input type="text" placeholder="seu.email@exemplo.com" />
+                                <p className="font-medium">Email</p>
+                                <div className="input-group">
+                                    <IdCard className="icon" />
+                                    <input name="email" className="input" type="email" placeholder="seu.email@exemplo.com" />
+                                </div>
                             </div>
                             <div className={styles.formField}>
-                                <p>Senha</p>
-                                <input type="password" placeholder="Digite sua senha de acesso" />
+                                <p className="font-medium">Senha</p>
+                                <div className="input-group">
+                                    <LockKeyhole className="icon"/>
+                                    <input name="senha" className="input" type={verSenha?"text":"password"} placeholder="Digite sua senha de acesso" />
+                                    <button type="button" className="button-icon button-icon-secondary" onClick={toggleVerSenha}>
+                                        {verSenha ? <EyeOff size={18}/> : <Eye size={18} />}
+                                    </button>
+                                </div>
                             </div>
-                            <button>Entrar na plataforma</button>
+                            <button type="submit" className="button button-teriary">
+                                <p className="text-sm font-medium">Entrar na plataforma</p>
+                            </button>
                         </form>
                     </div>
                     <div className={styles.cadastroInfo}>
-                        <p>Ainda não tem cadastro?</p>
+                        <p className="text-sm text-secondary-600">Ainda não tem cadastro?</p>
                         <a href="/cadastro">Crie sua conta gratuita em menos de 1 minuto</a>
                     </div>
                 </div>

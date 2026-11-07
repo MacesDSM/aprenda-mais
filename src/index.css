@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "css/utils.css";
+@import "css/components.css";
 :root {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+
   --primary-500: #FFFFFF;
   --primary-color-500: #262626;
+  
   --secondary-500: #E7EEFF;
   --secondary-color-500: #544e68;
+  --secondary-600: #ccd1de;
+  --secondary-color-600: #3e394d;
+  
   --teriary-500: #0044E0;
-  --teriary-50: #1754e3;
   --teriary-color-500: #FFFFFF;
+  --teriary-600: #013abf;
+  --teriary-400: #1754e3;
+
+  --border-radius: 0.5rem;
   --font-size-min: 1.5rem;
 }
 

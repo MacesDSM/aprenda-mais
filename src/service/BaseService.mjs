@@ -8,7 +8,7 @@ export class BaseService {
     
     /**
      * Construtor que inicia a base de dados e a vincula com o nome do parâmetro.
-     * @param {*} key Nome da base de dados a ser incializada.
+     * @param {string} key Nome da base de dados a ser incializada.
      */
     constructor(key) {
         this.key = key;
@@ -31,7 +31,18 @@ export class BaseService {
      */
     findAll() {
         const dados = localStorage.getItem(this.key);
-        return response ? this.jsonToObject(dados) : [];
+        return dados ? this.jsonToObject(dados) : [];
+    }
+
+    /**
+     * 
+     * @param {number} id 
+     * @returns 
+     */
+    findById(id) {
+        const registo = this.findAll()
+            .filter(r=>r.id===id)[0];
+        return registo ?? null;
     }
 
     /**
@@ -55,7 +66,7 @@ export class BaseService {
 
     /**
      * Atualiza um registro da base de dados pelo seu ID
-     * @param {*} id ID único do registro a ser modificado.
+     * @param {number} id ID único do registro a ser modificado.
      * @param {*} request Novo objeto alterado.
      * @throws Caso nenhum registro com o ID informado seja encontrado, uma exceção é
      * lançada.
@@ -81,7 +92,7 @@ export class BaseService {
 
     /**
      * Exclui um registro da base de dados pelo seu ID
-     * @param {*} id ID único do registro a ser excluido.
+     * @param {number} id ID único do registro a ser excluido.
      * @throws Caso nenhum registro com o ID informado seja encontrado, uma exceção é
      * lançada.
      */
@@ -110,7 +121,9 @@ export class BaseService {
     // Utilitários
     /**
      * Converte um JSON em um Plain Object Javascript.
-     * @param {*} json string de Objeto JSON
+     * @description Esse método é util para transportar os dados do localStorage para dentro do código
+     * em forma de objeto de volta.
+     * @param {string} json string de Objeto JSON
      * @returns Objeto JS convertido.
      */
     jsonToObject(json) {
@@ -124,5 +137,18 @@ export class BaseService {
      */
     objectToJson(object) {
         return JSON.stringify(object);
+    }
+
+    /**
+     * Método que converte os dados de um `<form>` do HTML em um objeto JS.
+     * @param {*} formEvent Objeto de evento do formulário, obtido pelo onSubmit
+     * @returns Objeto JS com as propriedades e valores do formulário
+     * Para funcionar corretamente, todos os campos (controles) do formulário devem
+     * ter o atributo `name` devidamente definido.
+     */
+    getFormObject(formEvent) {
+        const formData = new FormData(formEvent.target);
+
+        return Object.fromEntries(formData)
     }
 }

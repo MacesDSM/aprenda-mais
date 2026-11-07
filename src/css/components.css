@@ -1,0 +1,65 @@
+/*
+ * Folha de estilo própria para estilizar componentes
+ * e elementos do sistem. 
+*/
+
+.button, .button-icon {
+    border-radius: var(--border-radius);
+    padding: 0.7rem;
+    cursor: pointer;
+    border-style: none;
+}
+.icon {
+    aspect-ratio: 1;
+    padding: 0.5rem;
+}
+
+.button-icon {
+    aspect-ratio: 1;
+    background-position: center;
+}
+
+.button-icon-secondary {
+    background-color: var(--secondary-500);
+    &:hover {
+        background-color: var(--secondary-600);
+    }
+}
+
+.button-teriary {
+    background-color: var(--teriary-500);
+    color: var(--teriary-color-500);
+    &:hover {
+        background-color: var(--teriary-600);
+    }
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+
+
+    border-style: none;
+    border-radius: var(--border-radius);
+    padding: 0.1rem;
+    color: var(--secondary-color-500);
+    background-color: var(--secondary-500);
+    outline-color: var(--secondary-600);
+
+    &>.input {
+        outline: none;
+        width: 100%;
+    }
+    &:has(.input:focus) {
+        outline: 2px solid var(--secondary-600);
+    }
+}
+
+.input {
+    border-style: none;
+    border-radius: var(--border-radius);
+    padding: 0.7rem;
+    color: var(--secondary-color-500);
+    background-color: var(--secondary-500);
+    outline-color: var(--secondary-600);
+}
