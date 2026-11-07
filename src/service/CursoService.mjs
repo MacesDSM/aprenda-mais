@@ -1,8 +1,7 @@
 import { BaseService } from "./BaseService.mjs";
 
 export class CursoService extends BaseService {
-    
-    findAll() {
-
+    constructor() {
+        super("curso");
     }
 }
