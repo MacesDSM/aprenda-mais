@@ -1,3 +1,4 @@
+import { AutorService } from "./AutorService";
 import { BaseService } from "./BaseService.mjs";
 
 /**
@@ -87,4 +88,30 @@ export class UsuarioService extends BaseService {
     logout() {
         localStorage.removeItem(this.#authKey);
     }
+    /**
+     * 
+     * @param {*} request Objeto para cadastrar o autor;
+     * @example
+     * ```js
+     * {
+     *  nome "Nome usuario",
+     *  email: "email@usuario.com",
+     *  senha: "123456",
+     *  tipoUsuario: "autor" // (ou "usuario")
+     * }
+     * ```
+     */
+    cadastrarUsuario(request) {
+        if(!request.tipoUsuario) {
+            throw new Error("Erro no cadastro, campos inválidos");
+        }
+
+        if(request.tipoUsuario == "usuario") {
+            this.save(request);
+        } else {
+            const autorService = new AutorService();
+            autorService.save(request);
+        }
+    }
+
 }
