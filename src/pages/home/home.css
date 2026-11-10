@@ -1,6 +1,10 @@
-.home-page { --home-ink: #17213a; --home-muted: #69748c;
-  --home-blue: #315cff; --home-border: #e8ebf3; min-height: 100vh;
-  color: var(--home-ink); background: #fff; }
+.home-page { 
+  --home-ink: #17213a;
+  --home-muted: #69748c;
+  --home-blue: #315cff;
+  --home-border: #e8ebf3; min-height: 100vh;
+  color: var(--home-ink); background: #fff;
+}
 .home-page *, .home-page *::before, .home-page *::after { box-sizing: border-box; }
 .home-page a { color: inherit; text-decoration: none; }
 .content-width { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }

@@ -51,6 +51,7 @@ export class BaseService {
      * @description No objeto do parametro não é necessário informar o ID, pois esse não será
      * considerado na lógica e sim alterado para a ordem sequencial dos IDs. Se você precisa alterar um registro já
      * existente, use o método `update()`
+     * @returns {*} Objeto criado e salvo.
      */
     save(request) {
         const listaAtual = this.findAll();
