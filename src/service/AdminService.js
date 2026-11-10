@@ -1,14 +1,16 @@
+import { AutorService } from "./AutorService";
 import { BaseService } from "./BaseService.mjs";
-import { UsuarioService } from "./UsuarioService.mjs";
 
 export class AdminService extends BaseService {
-    #usuarioService;
+    autorService;
 
     constructor() {
         super("admin");
         this.bootstrap();
-        this.#usuarioService = new UsuarioService();
+        this.autorService = new AutorService();
     }
+
+    statusAutorRegExp = new RegExp("pendente|aprovado|reprovado", "i");
 
     
 
@@ -26,8 +28,12 @@ export class AdminService extends BaseService {
     }
 
     alterarStatusAutor(idAutor, status) {
-        const autor = this.#usuarioService.findById(idAutor);
+        const autor = this.autorService.findById(idAutor);
 
-        // Validar se é autor e aplicar o status novo
+        if(this.statusAutorRegExp.test(status)) {
+            this.autorService.update(idAutor, {...autor, status: status})
+        } else {
+            throw new Error("Status inválido para o autor");
+        }
     }
 }

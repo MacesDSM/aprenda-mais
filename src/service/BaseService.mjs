@@ -75,14 +75,15 @@ export class BaseService {
     update(id, request) {
         const listaAtual = this.findAll();
         let encontrado = false;
-
         const novaLista = listaAtual.map(item => {
             if (item.id === Number(id)) {
                 encontrado = true;
-                return { ...item, ...request, id };
+                return { ...request, id: id };
             }
             return item;
         });
+
+        console.log(novaLista);
 
         if (encontrado) {
             localStorage.setItem(this.key, this.objectToJson(novaLista));

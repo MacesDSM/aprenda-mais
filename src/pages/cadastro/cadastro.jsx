@@ -25,10 +25,6 @@ export function Cadastro() {
         setConfirmar(prev=>!prev);
     }
     
-
-    
-
-
     return (
          <section className="main">
             <div className="painel">
