@@ -70,7 +70,7 @@ export function IndicarCurso() {
                     <p className="teriary-500 font-medium">ACESSO DEMOCRÁTICO À EDUCAÇÃO</p>
                     <p className="text-secondary-600 font-semibold text-md">Por que catalogar e não cobrar?</p>
                     <p className="text-secondary-500">
-                        O Conheça Mais nasceu do princípio de que o melhor conhecimento
+                        O Aprenda Mais nasceu do princípio de que o melhor conhecimento
                         governamental e universitário já está pago com recursos públicos e civis.
                         Nosso trabalho é apenas pavimentar o caminho até o estudante sem
                         barreiras de algoritmos ou taxas.
