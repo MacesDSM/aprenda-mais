@@ -94,7 +94,7 @@ export function Cadastro() {
                                     <p>Autor</p>
                                 </div>
                                 <div className="itemRadio">
-                                    <input value="estudante"  name="tipoUsuario" type="radio" />
+                                    <input value="estudante" name="tipoUsuario" type="radio" defaultChecked />
                                     <p>Estudante</p>
                                 </div>
 

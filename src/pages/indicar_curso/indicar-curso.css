@@ -1,0 +1,54 @@
+section {
+    padding: 1rem;
+}
+.heading {
+    max-width: 50%;
+}
+
+.form-content {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    border: 2px var(--secondary-500) solid;
+    max-width: 50%;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.form-field-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.form-footer {
+    margin-top: 1rem;
+}
+.card {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-500);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    & .card-content {
+        width: 50%;
+    }
+}
+.card-addon-left {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    & .card-badge {
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        background-color: var(--primary-500);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

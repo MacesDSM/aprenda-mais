@@ -1,3 +1,4 @@
+
 /*
  * Folha de estilo própria para estilizar componentes
  * e elementos do sistem. 
@@ -33,6 +34,14 @@
         background-color: var(--teriary-600);
     }
 }
+.button-secondary {
+    background-color: var(--secondary-500);
+    color: var(--secondary-color-600);
+    &:hover {
+        background-color: var(--secondary-600);
+    }
+}
+
 
 .input-group {
     display: flex;
@@ -53,6 +62,12 @@
     &:has(.input:focus) {
         outline: 2px solid var(--secondary-600);
     }
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .input {
