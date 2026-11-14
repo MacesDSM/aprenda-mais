@@ -1,5 +1,20 @@
 import { Globe } from "lucide-react";
 import "./indicar-curso.css";
+import { CursoService } from "../../service";
+
+function submit(event) {
+    const cursoService = new CursoService();
+
+    const data = cursoService.getFormObject(event);
+    data.autor = data.autor + " (indicado)";
+    
+    if(cursoService.save(data)) {
+        window.alert("Curso indicao, fica em análise para o administrador");
+    }
+    event.preventDefault();
+}
+
+
 export function IndicarCurso() {
     return (
         <section>
@@ -14,7 +29,7 @@ export function IndicarCurso() {
                     ao catálogo aberto
                 </p>
             </div>
-            <form>
+            <form onSubmit={submit}>
                 <div className="form-content">
                     <div className="titulo">
                         <p className="text-md font-semibold">Ficha de Indicação</p>
@@ -22,23 +37,23 @@ export function IndicarCurso() {
                     </div>
                     <div className="form-field font-medium">
                         <p>Nome do Curso</p>
-                        <input className="input" type="text" />
+                        <input className="input" type="text" name="titulo" />
                     </div>
                     <div className="form-field-row font-medium">
                         <div className="form-field">
                             <p>Insituição / Autor</p>
-                            <input className="input" type="text" />
+                            <input className="input" type="text" name="autor" />
                         </div>
                         <div className="form-field font-medium">
                             <p>Carga Horária estimada</p>
-                            <input className="input" type="text" />
+                            <input className="input" type="text" name="duracao" />
                         </div>
                     </div>
                     <div className="form-field font-medium">
                         <p>Link Oficial Direto (URL)</p>
                         <div className="input-group">
                             <Globe className="icon" size={20} />
-                            <input className="input" type="text" placeholder="https://" />
+                            <input className="input" name="link" type="url" placeholder="https://" />
                         </div>
                     </div>
                     <p className="font-normal text-sm">Cole o link da página do curso para onde os estudantes serão diretamente redirecionados.</p>
