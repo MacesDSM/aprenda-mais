@@ -51,7 +51,6 @@ export class BaseService {
      * @description No objeto do parametro não é necessário informar o ID, pois esse não será
      * considerado na lógica e sim alterado para a ordem sequencial dos IDs. Se você precisa alterar um registro já
      * existente, use o método `update()`
-     * @returns {*} Objeto criado e salvo.
      */
     save(request) {
         const listaAtual = this.findAll();
@@ -75,15 +74,14 @@ export class BaseService {
     update(id, request) {
         const listaAtual = this.findAll();
         let encontrado = false;
+
         const novaLista = listaAtual.map(item => {
             if (item.id === Number(id)) {
                 encontrado = true;
-                return { ...request, id: id };
+                return { ...item, ...request, id };
             }
             return item;
         });
-
-        console.log(novaLista);
 
         if (encontrado) {
             localStorage.setItem(this.key, this.objectToJson(novaLista));
