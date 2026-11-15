@@ -41,3 +41,8 @@
 .font-black {
     font-weight: 900;
 }
+
+/* Cores */
+.text-secondary-600 {
+    color: var(--secondary-color-600);
+}
