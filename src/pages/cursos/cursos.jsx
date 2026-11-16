@@ -232,6 +232,7 @@ export function Cursos() {
               onChange={(evento) => atualizarFiltro(setBusca, evento.target.value)}
               aria-label="Buscar cursos por nome, área ou instituição"
             />
+            <kbd>/</kbd>
           </label>
           <ul>
             <li>
