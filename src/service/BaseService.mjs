@@ -37,12 +37,16 @@ export class BaseService {
     /**
      * 
      * @param {number} id 
-     * @returns 
+     * @returns Registro de acordo com o ID passado.
+     * @throws Caso o registro não tenha uma correspondência, gera uma exceção.
      */
     findById(id) {
         const registo = this.findAll()
             .filter(r=>r.id===id)[0];
-        return registo ?? null;
+        if(registo) {
+            return registo
+        }
+        throw new Error("Registro não encontrado");
     }
 
     /**
