@@ -1,0 +1,167 @@
+/*
+ * Estilos reutilizáveis de componentes e elementos do sistema.
+ */
+.button,
+.button-icon {
+    border: 0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.button {
+    box-sizing: border-box;
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.button-primary {
+    color: var(--teriary-color-500);
+    background-color: var(--teriary-500);
+}
+
+.button-primary:hover {
+    background-color: var(--teriary-600);
+}
+
+.button-icon {
+    aspect-ratio: 1;
+    padding: 0.5rem;
+    background-position: center;
+}
+
+.icon {
+    aspect-ratio: 1;
+    padding: 0.5rem;
+}
+
+.button-icon-secondary {
+    background-color: var(--secondary-500);
+}
+
+.button-icon-secondary:hover {
+    background-color: var(--secondary-600);
+}
+
+.button-teriary {
+    color: var(--teriary-color-500);
+    background-color: var(--teriary-500);
+}
+
+.button-teriary:hover {
+    background-color: var(--teriary-600);
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: var(--border-radius);
+    padding: 0.1rem;
+    color: var(--secondary-color-500);
+    background-color: var(--secondary-500);
+    outline-color: var(--secondary-600);
+}
+
+.input-group > .input {
+    width: 100%;
+    outline: none;
+}
+
+.input-group:has(.input:focus) {
+    outline: 2px solid var(--secondary-600);
+}
+
+.input {
+    border: 0;
+    border-radius: var(--border-radius);
+    padding: 0.7rem;
+    color: var(--secondary-color-500);
+    background-color: var(--secondary-500);
+    outline-color: var(--secondary-600);
+}
+
+.content-width {
+    width: min(1120px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: #536be6;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.section-heading h2 {
+    margin: 0.5rem 0;
+    color: #1d2841;
+    font-size: clamp(1.5rem, 2.4vw, 1.875rem);
+    font-weight: 700;
+    letter-spacing: -0.044rem;
+    line-height: 1.25;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #68748a;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0;
+    color: #3459ed;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.icon-badge {
+    display: inline-grid;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 0.5rem;
+}
+
+.empty-state {
+    padding: 1.5rem;
+    color: #68748a;
+    background: #f7f9ff;
+    border: 1px solid #e5e9f1;
+    border-radius: 0.625rem;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .content-width {
+        width: min(calc(100% - 36px), 720px);
+    }
+}
+
+@media (max-width: 620px) {
+    .content-width {
+        width: calc(100% - 32px);
+    }
+}

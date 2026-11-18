@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.sobre-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.sobre-cabecalho {
+  margin-bottom: 48px;
+}
+
+.sobre-cabecalho h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.sobre-cabecalho p {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.grid-destaques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.card-destaque {
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-destaque:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.card-destaque h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.card-destaque p {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.secao {
+  margin-bottom: 40px;
+}
+
+.secao h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+.secao p {
+  font-size: 15px;
+  color: #4b5563;
+  margin-bottom: 12px;
+}
+
+.botoes-acao {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-principal {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn-principal:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secundario {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secundario:hover {
+  background-color: #e5e7eb;
+}
+
+.metricas {
+  display: flex;
+  gap: 40px;
+  margin: 24px 0;
+}
+
+.metrica {
+  text-align: center;
+}
+
+.metrica-valor {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.metrica-label {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.aviso {
+  background-color: #f9fafb;
+  border-left: 3px solid #2563eb;
+  padding: 16px;
+  border-radius: 4px;
+  margin: 20px 0;
+  font-size: 14px;
+  color: #374151;
+}
