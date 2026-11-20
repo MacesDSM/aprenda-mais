@@ -19,10 +19,7 @@ export class UsuarioService extends BaseService {
      */
     
 
-    /**
-     * Atributo apenas para guardar a key que guarda o usuário autênticado.
-     */
-    #authKey = "auth";
+    
 
     /**
      * @param {*} request Objeto com email e senha do login
@@ -40,7 +37,7 @@ export class UsuarioService extends BaseService {
     logar(request) {
         const conta = this.findByEmail(request.email);
         if(conta && conta.senha === request.senha) {
-            localStorage.setItem(this.#authKey, this.objectToJson(conta));
+            localStorage.setItem(this.authKey, this.objectToJson(conta));
             return true;
         }
         return false;
@@ -84,23 +81,10 @@ export class UsuarioService extends BaseService {
     }
 
     /**
-     * Busca o usuário logado, armazenado na base de dados `auth`
-     * @returns Caso exista (esteja logado), retorna o objeto do usuário logado, caso contrário
-     * retorna `null`.
-     */
-    getUsuarioLogado() {
-        const obj = localStorage.getItem(this.#authKey);
-        if(obj) {
-            return this.jsonToObject(obj);
-        }
-        return null;
-    }
-
-    /**
      * Faz logout do usuário autênticado, removendo da base de dados `auth`.
      */
     logout() {
-        localStorage.removeItem(this.#authKey);
+        localStorage.removeItem(this.authKey);
     }
     /**
      * Cadastra um novo usuário no sistema
