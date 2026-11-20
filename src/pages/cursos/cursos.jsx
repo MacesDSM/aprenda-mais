@@ -382,7 +382,7 @@ export function Cursos() {
               {cursosVisiveis.length ? (
                 cursosVisiveis.map((curso) => (
                   <article
-                    className={`cartao-curso cartao-curso-${curso.cor}`}
+                    className={`cartao-curso`}
                     key={curso.id}
                   >
                     <div className="curso-provedor">

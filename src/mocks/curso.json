@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "Introdução à Ciência de Dados e IA no Setor Público",
+    "descricao": "Apresenta os fundamentos essenciais de análise preditiva, princípios éticos para uso de inteligência artificial governamental e repositórios abertos de dados públicos.",
+    "link": "https://www.gov.br/",
+    "duracao": "40 horas"
+  },
+  {
+    "id": 2,
+    "titulo": "Lei Geral de Proteção de Dados (LGPD) e Direitos do Cidadão",
+    "descricao": "Explica os direitos fundamentais de privacidade e autodeterminação informativa no ambiente digital, requisitos para tratamento de dados e diretrizes de conformidade jurídica.",
+    "link": "https://www.gov.br/",
+    "duracao": "25 horas"
+  },
+  {
+    "id": 3,
+    "titulo": "Gestão Financeira Descomplicada para Novos Negócios",
+    "descricao": "Capacitação prática orientada a controle de fluxo de caixa, precificação com margem real, divisão de despesas de pessoa física e jurídica e regularização fiscal descomplicada.",
+    "link": "https://sebrae.com.br/",
+    "duracao": "15 horas"
+  },
+  {
+    "id": 4,
+    "titulo": "Fundamentos de Programação Web: HTML5, CSS & JS Moderno",
+    "descricao": "Ensina a codificar páginas web modernas a partir do zero, abrangendo acessibilidade, responsividade, semântica web e noções de lógica com JavaScript nativo.",
+    "link": "https://www.gov.br/",
+    "duracao": "60 horas"
+  },
+  {
+    "id": 5,
+    "titulo": "Inglês para o Ambiente de Trabalho",
+    "descricao": "Pratique vocabulário e situações comuns da comunicação profissional em inglês.",
+    "link": "https://www.escolavirtual.gov.br/",
+    "duracao": "20 horas"
+  },
+  {
+    "id": 6,
+    "titulo": "Cidadania Digital e Segurança na Internet",
+    "descricao": "Conheça práticas para proteger seus dados, reconhecer riscos digitais e exercer sua cidadania na internet.",
+    "link": "https://www.gov.br/",
+    "duracao": "10 horas"
+  },
+  {
+    "id": 7,
+    "titulo": "Planejamento Financeiro Pessoal",
+    "descricao": "Aprenda a organizar o orçamento, definir objetivos financeiros e planejar os próximos passos.",
+    "link": "https://sebrae.com.br/",
+    "duracao": "12 horas"
+  },
+  {
+    "id": 8,
+    "titulo": "Lógica de Programação para Iniciantes",
+    "descricao": "Desenvolva o raciocínio lógico e conheça os primeiros conceitos de algoritmos e programação.",
+    "link": "https://www.gov.br/",
+    "duracao": "30 horas"
+  }
+]

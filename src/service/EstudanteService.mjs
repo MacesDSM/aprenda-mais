@@ -1,5 +1,4 @@
 import { BaseService } from "./BaseService.mjs";
-import { UsuarioService } from "./UsuarioService.mjs";
 
 export class EstudanteService extends BaseService {
     
@@ -7,6 +6,7 @@ export class EstudanteService extends BaseService {
         super("estudante");
     }
 
+    
     save(request) {
         const listaAtual = this.findAll();
 
