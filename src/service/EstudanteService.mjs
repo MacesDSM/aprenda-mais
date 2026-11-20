@@ -1,25 +1,26 @@
 import { BaseService } from "./BaseService.mjs";
 
-export class AutorService extends BaseService {
-    constructor() {
-        super("autor");
+export class EstudanteService extends BaseService {
+    
+    constructor(){
+        super("estudante");
     }
 
+    
     save(request) {
         const listaAtual = this.findAll();
 
         // Inicializando estudante
-        const autor = {
+        const estudante = {
             id: request.id,
-            cursos: [],
-            status: "pendente",
-            fotoUrl: ""
+            cursos: request.cursos || []
         };
 
-        listaAtual.push(autor);
+        listaAtual.push(estudante);
 
         localStorage.setItem(this.key, this.objectToJson(listaAtual));
         
-        return autor;
+        return estudante;
     }
+        
 }

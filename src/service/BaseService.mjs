@@ -122,6 +122,24 @@ export class BaseService {
         return this.findAll().length;
     }
 
+    /**
+     * Atributo apenas para guardar a key que guarda o usuário autênticado.
+     */
+    authKey = "auth";
+
+    /**
+     * Busca o usuário logado, armazenado na base de dados `auth`
+     * @returns Caso exista (esteja logado), retorna o objeto do usuário logado, caso contrário
+     * retorna `null`.
+     */
+    getUsuarioLogado() {
+        const obj = localStorage.getItem(this.authKey);
+        if(obj) {
+            return this.jsonToObject(obj);
+        }
+        return null;
+    }
+
     // Utilitários
     /**
      * Converte um JSON em um Plain Object Javascript.

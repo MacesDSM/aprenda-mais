@@ -1,7 +1,7 @@
 import { Eye, EyeOff, LockKeyhole, IdCard, User } from "lucide-react";
 import "./cadastro.css";
 import { useState } from "react";
-import { AdminService, UsuarioService } from "../../service";
+import { UsuarioService } from "../../service";
 
 function criarConta(e) {
     e.preventDefault();

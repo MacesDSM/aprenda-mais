@@ -1,0 +1,8 @@
+[
+    {
+        "nome": "Estudante A",
+        "email": "esta@email.com",
+        "senha": "123456",
+        "tipoUsuario": "ESTUDANTE"
+    }
+]
