@@ -24,6 +24,7 @@ import {
 import { Link } from "react-router"
 import "./home.css"
 
+// Categorias usadas nos atalhos para filtrar os cursos em destaque.
 const categories = [
   { name: "Tecnologia & Dados", filter: "Tecnologia", description: "Programação, dados e novas tecnologias para o futuro.", icon: SquareTerminal, tone: "blue" },
   { name: "Educação Financeira", filter: "Finanças", description: "Aprenda a cuidar do seu dinheiro e planejar seus sonhos.", icon: WalletCards, tone: "orange" },
@@ -31,6 +32,7 @@ const categories = [
   { name: "Empreendedorismo", filter: "Empreendedorismo", description: "Tire suas ideias do papel e faça seu negócio crescer.", icon: Rocket, tone: "red" },
 ]
 
+// Dados locais que alimentam a busca, os filtros e os cartões de curso.
 const courses = [
   {
     title: "Fundamentos de Lógica de Programação",
@@ -88,12 +90,14 @@ const courses = [
   },
 ]
 
+// Conteúdo dos cartões de apresentação do projeto.
 const developerBenefits = [
   { icon: Code2, title: "Como Funciona a Curadoria", description: "Uma introdução prática para entender os fundamentos da programação.", tone: "blue" },
   { icon: BriefcaseBusiness, title: "Sem Pegadinhas ou Taxas", description: "Cursos gratuitos, com informações claras e sem custos escondidos.", tone: "purple" },
   { icon: Palette, title: "Desenvolvimento Voluntário", description: "Uma iniciativa feita por pessoas que acreditam na educação para todos.", tone: "orange" },
 ]
 
+// Opções compartilhadas pelos filtros e pelas buscas sugeridas.
 const courseFilters = ["Todos", "Tecnologia", "Finanças", "Empreendedorismo", "Setor Público"]
 const popularSearches = ["Tecnologia", "Finanças", "Empreendedorismo"]
 
@@ -106,12 +110,12 @@ function normalizeText(value) {
 }
 
 export function Home() {
-  // O termo aplicado fica separado do texto digitado para permitir buscar ao enviar o formulário.
+  // Mantém o texto digitado separado do termo aplicado até o envio da busca.
   const [query, setQuery] = useState("")
   const [searchTerm, setSearchTerm] = useState("")
   const [activeFilter, setActiveFilter] = useState("Todos")
 
-  // Aplica categoria e texto simultaneamente sem alterar a lista original de cursos.
+  // Combina categoria e termo sem modificar a lista original.
   const visibleCourses = courses.filter((course) => {
     const matchesFilter = activeFilter === "Todos" || course.category === activeFilter
     const searchableText = normalizeText(
@@ -120,6 +124,7 @@ export function Home() {
     return matchesFilter && searchableText.includes(searchTerm)
   })
 
+  // Busca pelo cabeçalho ou pelo destaque e leva a pessoa aos resultados.
   function applySearch(event) {
     event.preventDefault()
     setSearchTerm(normalizeText(query.trim()))
@@ -127,6 +132,7 @@ export function Home() {
     document.getElementById("cursos")?.scrollIntoView({ behavior: "smooth" })
   }
 
+  // Atalho para aplicar uma pesquisa sugerida imediatamente.
   function selectPopularSearch(term) {
     setQuery(term)
     setSearchTerm(normalizeText(term))
@@ -136,6 +142,7 @@ export function Home() {
 
   return (
     <section className="home-page" aria-label="Página inicial">
+      {/* Busca rápida, links principais e acesso à conta. */}
       <header className="site-header">
         <section className="header-inner" aria-label="Acesso rápido">
           <form className="header-search" role="search" onSubmit={applySearch}>
@@ -150,8 +157,8 @@ export function Home() {
             <kbd aria-hidden="true">/</kbd>
           </form>
 
-          <nav className="main-nav" aria-label="Navegação principal">
-            <Link className="navbar-link nav-link-active" to="/home" aria-current="page">Início</Link>
+          <nav className="main-nav" aria-label="Menu principal">
+            <Link className="navbar-link navbar-link-active" to="/home" aria-current="page">Início</Link>
             <Link className="navbar-link" to="/cursos">Cursos Gratuitos</Link>
             <Link className="navbar-link" to="/perfil">Área de Aprendizado</Link>
             <Link className="navbar-link navbar-link-wrapped" to="/indicar-curso">Cursos<br />indicados</Link>
@@ -165,6 +172,7 @@ export function Home() {
       </header>
 
       <main>
+        {/* Apresentação da plataforma, busca principal e sugestões populares. */}
         <section className="hero-section" aria-labelledby="hero-title">
           <article className="hero-content">
             <h1 id="hero-title">Descubra cursos que <strong>iluminam</strong> o<br className="hero-title-break" /> seu caminho.</h1>
@@ -210,6 +218,7 @@ export function Home() {
           </article>
         </section>
 
+        {/* Atalhos de categoria limpam a busca e atualizam os resultados. */}
         <section className="category-section content-width" aria-label="Categorias de cursos">
           <ul className="category-grid">
             {categories.map(({ name, description, icon: Icon, tone, filter }) => (
@@ -236,7 +245,7 @@ export function Home() {
           </ul>
         </section>
 
-        {/* Os filtros e resultados compartilham o mesmo estado de busca da página. */}
+        {/* Lista de cursos com busca, filtro de categoria e estado vazio. */}
         <section className="courses-section content-width" id="cursos" aria-labelledby="courses-title">
           <header className="section-heading courses-heading">
             <section>
@@ -291,6 +300,7 @@ export function Home() {
           )}
         </section>
 
+        {/* Destaque sobre gratuidade e certificação dos cursos. */}
         <aside className="certificate-banner content-width" aria-labelledby="certificate-title">
           <figure className="banner-icon" aria-hidden="true"><BadgeCheck size={22} /></figure>
           <article className="banner-copy">
@@ -304,6 +314,7 @@ export function Home() {
           </nav>
         </aside>
 
+        {/* Benefícios e informações sobre a iniciativa e seus desenvolvedores. */}
         <section className="about-section content-width" id="sobre" aria-labelledby="about-title">
           <header className="section-heading about-heading">
             <section>
@@ -337,6 +348,7 @@ export function Home() {
           </aside>
         </section>
 
+        {/* Chamada final para indicação de novas oportunidades. */}
         <section className="final-cta content-width" aria-labelledby="final-cta-title">
           <article>
             <p className="eyebrow">SUA PRÓXIMA CONQUISTA COMEÇA AQUI</p>
@@ -347,6 +359,7 @@ export function Home() {
         </section>
       </main>
 
+      {/* Rodapé com links institucionais e informações legais. */}
       <footer className="site-footer">
         <section className="footer-inner content-width" aria-label="Links institucionais">
           <section className="footer-brand">

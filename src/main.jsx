@@ -3,11 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
-import { Cursos, Home, IndicarCurso, Login, Perfil, Sobre, Cadastro } from './pages'
-import { mock } from './service/LoadMock.mjs'
-
-// Usar para testar c/ dados falsos
-mock();
+import { Cursos, Home, IndicarCurso, Login, Perfil, Sobre } from './pages'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,7 +15,6 @@ createRoot(document.getElementById('root')).render(
         <Route path='login' element={<Login />}/>
         <Route path='perfil' element={<Perfil />}/>
         <Route path='sobre' element={<Sobre />}/>
-        <Route path='cadastro' element={<Cadastro />} />
 
 
         {/* Rota coringa que redireciona para Home */}

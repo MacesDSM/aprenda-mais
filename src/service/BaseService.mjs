@@ -37,16 +37,12 @@ export class BaseService {
     /**
      * 
      * @param {number} id 
-     * @returns Registro de acordo com o ID passado.
-     * @throws Caso o registro não tenha uma correspondência, gera uma exceção.
+     * @returns 
      */
     findById(id) {
         const registo = this.findAll()
             .filter(r=>r.id===id)[0];
-        if(registo) {
-            return registo
-        }
-        throw new Error("Registro não encontrado");
+        return registo ?? null;
     }
 
     /**
@@ -120,24 +116,6 @@ export class BaseService {
      */
     count() {
         return this.findAll().length;
-    }
-
-    /**
-     * Atributo apenas para guardar a key que guarda o usuário autênticado.
-     */
-    authKey = "auth";
-
-    /**
-     * Busca o usuário logado, armazenado na base de dados `auth`
-     * @returns Caso exista (esteja logado), retorna o objeto do usuário logado, caso contrário
-     * retorna `null`.
-     */
-    getUsuarioLogado() {
-        const obj = localStorage.getItem(this.authKey);
-        if(obj) {
-            return this.jsonToObject(obj);
-        }
-        return null;
     }
 
     // Utilitários
