@@ -6,6 +6,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
 import { Cursos, Home, IndicarCurso, Login, Perfil, Sobre, Cadastro } from './pages'
 import { mock } from './service/LoadMock.mjs'
 import { UsuarioService } from './service'
+import Administrador from './pages/administrador/adiminstrador'
 
 // Usar para testar c/ dados falsos
 const service = new UsuarioService();
@@ -25,7 +26,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='perfil' element={<Perfil />}/>
         <Route path='sobre' element={<Sobre />}/>
         <Route path='cadastro' element={<Cadastro />} />
-
+        <Route path='administrador' element={<Administrador />} />
 
         {/* Rota coringa que redireciona para Home */}
         <Route path="*" element={<Navigate to="/home" />} />
