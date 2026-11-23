@@ -37,7 +37,7 @@ export class UsuarioService extends BaseService {
     logar(request) {
         const conta = this.findByEmail(request.email);
         if(conta && conta.senha === request.senha) {
-            localStorage.setItem(this.authKey, this.objectToJson(conta));
+            localStorage.setItem(this.authKey, this.objectToJson({id: conta.id}));
             return true;
         }
         return false;

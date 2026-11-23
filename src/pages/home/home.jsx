@@ -23,6 +23,7 @@ import {
 } from "lucide-react"
 import { Link } from "react-router"
 import "./home.css"
+import { AdminService, AutorService } from "../../service"
 
 const categories = [
   { name: "Tecnologia & Dados", filter: "Tecnologia", description: "Programação, dados e novas tecnologias para o futuro.", icon: SquareTerminal, tone: "blue" },
