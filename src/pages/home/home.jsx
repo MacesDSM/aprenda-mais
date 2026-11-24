@@ -23,7 +23,7 @@ import {
 } from "lucide-react"
 import { Link } from "react-router"
 import "./home.css"
-import { AdminService, AutorService } from "../../service"
+import { Navbar } from "../../components"
 
 const categories = [
   { name: "Tecnologia & Dados", filter: "Tecnologia", description: "Programação, dados e novas tecnologias para o futuro.", icon: SquareTerminal, tone: "blue" },
@@ -137,33 +137,7 @@ export function Home() {
 
   return (
     <section className="home-page" aria-label="Página inicial">
-      <header className="site-header">
-        <section className="header-inner" aria-label="Acesso rápido">
-          <form className="header-search" role="search" onSubmit={applySearch}>
-            <Search size={14} aria-hidden="true" />
-            <input
-              type="search"
-              placeholder="Buscar cursos, áreas..."
-              aria-label="Buscar cursos e áreas"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-            <kbd aria-hidden="true">/</kbd>
-          </form>
-
-          <nav className="main-nav" aria-label="Navegação principal">
-            <Link className="navbar-link nav-link-active" to="/home" aria-current="page">Início</Link>
-            <Link className="navbar-link" to="/cursos">Cursos Gratuitos</Link>
-            <Link className="navbar-link" to="/perfil">Área de Aprendizado</Link>
-            <Link className="navbar-link navbar-link-wrapped" to="/indicar-curso">Cursos<br />indicados</Link>
-            <Link className="navbar-link navbar-link-about" to="/sobre"><UsersRound size={12} aria-hidden="true" /> Sobre o Projeto</Link>
-          </nav>
-          <nav className="header-actions" aria-label="Conta e indicações">
-            <Link className="button button-primary header-signup" to="/indicar-curso">Indicar Curso</Link>
-            <Link className="profile-icon" to="/perfil" aria-label="Perfil"><UserRound size={14} aria-hidden="true" /></Link>
-          </nav>
-        </section>
-      </header>
+      <Navbar applySearch={applySearch} query={query} setQuery={setQuery}/>
 
       <main>
         <section className="hero-section" aria-labelledby="hero-title">
@@ -344,7 +318,7 @@ export function Home() {
             <h2 id="final-cta-title">Conhece uma oportunidade gratuita que pode ajudar alguém?</h2>
             <p>Indique um curso e ajude mais pessoas a encontrarem novos caminhos.</p>
           </article>
-          <Link className="button button-primary" to="/indicar-curso">Indicar um curso gratuito <ArrowRight size={16} aria-hidden="true" /></Link>
+          <Link className="button button-primary" to="/cursos">Indicar um curso gratuito <ArrowRight size={16} aria-hidden="true" /></Link>
         </section>
       </main>
 
@@ -362,7 +336,7 @@ export function Home() {
             <h2>Plataforma</h2>
             <ul>
               <li><Link to="/cursos">Explorar cursos</Link></li>
-              <li><Link to="/indicar-curso">Indicar um curso</Link></li>
+              <li><Link to="/cursos">Indicar um curso</Link></li>
               <li><Link to="/sobre">Sobre o projeto</Link></li>
             </ul>
           </nav>
@@ -378,7 +352,7 @@ export function Home() {
             <h2>Comunidade & Ajuda</h2>
             <ul>
               <li><Link to="/sobre">Conheça o projeto</Link></li>
-              <li><Link to="/indicar-curso">Compartilhe oportunidades</Link></li>
+              <li><Link to="/cursos">Compartilhe oportunidades</Link></li>
               <li><Link to="/login">Acesse sua conta</Link></li>
             </ul>
           </nav>

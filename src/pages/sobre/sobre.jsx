@@ -1,5 +1,6 @@
 import React from 'react';
 import './sobre.css';
+import { Navbar } from '../../components';
 
 export function Sobre() {
   const handleInscrever = () => {
@@ -11,6 +12,8 @@ export function Sobre() {
   };
 
   return (
+    <>
+      <Navbar />
     <div className="sobre-container">
       <div className="sobre-cabecalho">
         <h1>Sobre o Projeto & Desenvolvedores</h1>
@@ -83,5 +86,6 @@ export function Sobre() {
         </button>
       </div>
     </div>
+    </>
   );
 }

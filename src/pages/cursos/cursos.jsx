@@ -13,7 +13,7 @@ import {
   ArrowDownUp, BadgeCheck, ChevronLeft, ChevronRight, CirclePlus,Clock3, ExternalLink, Globe, GraduationCap, Info,Search, Send, Star,
 } from "lucide-react";
 import "./cursos.css";
-
+import { Navbar } from "../../components";
 
   /* Cards demonstrativos.*/
 
@@ -218,40 +218,7 @@ export function Cursos() {
 
   return (
     <div className="pagina-cursos">
-      <header className="cursos-cabecalho">
-        <nav
-          className="cursos-cabecalho-conteudo cursos-navegacao"
-          aria-label="Navegação principal"
-        >
-          <label className="Barra-pesquisa">
-            <Search size={14} aria-hidden="true" />
-            <input
-              type="search"
-              placeholder="Buscar cursos, áreas..."
-              value={busca}
-              onChange={(evento) => atualizarFiltro(setBusca, evento.target.value)}
-              aria-label="Buscar cursos por nome, área ou instituição"
-            />
-            <kbd>/</kbd>
-          </label>
-          <ul>
-            <li>
-              <Link to="/cursos" aria-current="page">
-                Cursos Gratuitos
-              </Link>
-            </li>
-            <li>
-              <Link to="/perfil">Áreas de Aprendizado</Link>
-            </li>
-            <li>
-              <Link to="/sobre">Gov.br & Parceiros</Link>
-            </li>
-            <li>
-              <Link to="/indicar">Indicar Curso</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="cursos-conteudo">
         <section className="Cursos-resumo-inicio">

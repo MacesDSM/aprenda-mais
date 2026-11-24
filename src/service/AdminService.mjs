@@ -1,21 +1,18 @@
 import { AutorService } from "./AutorService";
 import { BaseService } from "./BaseService.mjs";
+import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
 import { CursoService } from "./CursoService.mjs";
+import { statusAutorRegExp } from "./StatusAutor.mjs";
+import { statusCursoRegExp } from "./StatusCurso.mjs";
 
 export class AdminService extends BaseService {
-    autorService;
-    cursoService;
-
     constructor() {
         super("admin");
         this.bootstrap();
         this.autorService = new AutorService();
         this.cursoService = new CursoService();
+        this.categoriaCursoService = new CategoriaCursoService();
     }
-
-    statusAutorRegExp = new RegExp("pendente|aprovado|reprovado", "i");
-
-    statusCursoRegExp = new RegExp("pendente|aprovado|reprovado", "i");
 
     
 
@@ -35,7 +32,7 @@ export class AdminService extends BaseService {
     alterarStatusAutor(idAutor, status) {
         const autor = this.autorService.findById(idAutor);
 
-        if(this.statusAutorRegExp.test(status)) {
+        if(statusAutorRegExp.test(status)) {
             this.autorService.update(idAutor, {...autor, status: status});
         } else {
             throw new Error("Status inválido para o autor");
@@ -45,7 +42,7 @@ export class AdminService extends BaseService {
     alterarStatusCurso(idCurso, status) {
         const curso = this.cursoService.findById(idCurso);
 
-        if(this.statusCursoRegExp.test(status)) {
+        if(statusCursoRegExp.test(status)) {
             this.cursoService.update(idCurso, {...curso, status: status});
         } else {
             throw new Error("Status inválido para o curso");
