@@ -1,266 +1,241 @@
-import { useMemo, useState } from "react"
+/*
+Muitas funções precisam de conexões das quais eu não soube fazer,
+a maioria das funcionalidasdes utilizam dados temporários,
+se tiverem tempo para revisar o código e ajustar essas questões!
+*/
+
+
+
+
+import { useState } from "react";
+import { Link } from "react-router";
 import {
-  ArrowRight,
-  BookOpen,
-  CalendarDays,
-  ChevronDown,
-  Ellipsis,
-  Pencil,
-  Plus,
-  Search,
-  UsersRound,
-} from "lucide-react"
-import { Link } from "react-router"
-import "./perfil.css"
+    Camera, CirclePlus, UserRoundPen, BadgeCheck, Clock, CircleArrowRight, Link2, UsersRound,
+} from "lucide-react";
+import { UsuarioService } from "../../service";
+import "./perfil.css";
+import { Navbar } from "../../components";
 
-const courses = [
-  {
-    number: "01",
-    title: "Design que faz sentido.",
-    summary: "Design systems do início ao fim",
-    category: "DESIGN",
-    initials: "UI",
-    tone: "blue",
-    status: "Publicado",
-    lessons: 24,
-    students: 860,
-    updated: "2026-11-18",
-  },
-  {
-    number: "02",
-    title: "Interfaces com intenção.",
-    summary: "Design de interfaces na prática",
-    category: "DESIGN",
-    initials: "UX",
-    tone: "purple",
-    status: "Publicado",
-    lessons: 12,
-    students: 312,
-    updated: "2026-11-16",
-  },
-  {
-    number: "03",
-    title: "Marcas que deixam marca.",
-    category: "BRANDING",
-    initials: "Aa",
-    tone: "orange",
-    status: "Rascunho",
-    lessons: 8,
-    students: 0,
-    progress: 61,
-    updated: "2026-11-12",
-  },
-  {
-    number: "04",
-    title: "Menos ruído. Mais sistema.",
-    summary: "Design systems do início ao fim",
-    category: "PRODUTO",
-    initials: "DS",
-    tone: "green",
-    status: "Publicado",
-    lessons: 18,
-    students: 28,
-    updated: "2026-11-10",
-  },
-  {
-    number: "05",
-    title: "Cada letra conta.",
-    summary: "Tipografia para produtos digitais",
-    category: "TIPOGRAFIA",
-    initials: "Tt",
-    tone: "yellow",
-    status: "Publicado",
-    lessons: 10,
-    students: 48,
-    updated: "2026-11-08",
-  },
-  {
-    number: "06",
-    title: "Seu trabalho. Sua história.",
-    summary: "Portfólio criativo que conecta",
-    category: "CARREIRA",
-    initials: "→",
-    tone: "slate",
-    status: "Rascunho",
-    lessons: 6,
-    students: 0,
-    progress: 30,
-    updated: "2026-11-05",
-  },
-]
+// Dados temporários; substituir pelos dados do serviço quando estiver disponível.
+const cursosEmAndamento = [
+    {
+        id: 1,
+        titulo: "Lógica de programação",
+        categoria: "Programação",
+        plataforma: "IFSP",
+        resumo: "Fundamentos de lógica, algoritmos e programação para iniciantes.",
+        progresso: 75,
+        modulosRestantes: 2,
+        ultimaAtividade: "Há 3 dias",
+    },
+    {
+        id: 2,
+        titulo: "Proteção de dados",
+        categoria: "Privacidade e cidadania",
+        plataforma: "Santander Open Academy",
+        resumo: "Conceitos essenciais para proteger dados pessoais e navegar com segurança.",
+        progresso: 20,
+        modulosRestantes: 4,
+        ultimaAtividade: "Há 1 dia",
+    },
+];
 
-const tabs = [
-  { label: "Todos", value: "Todos", count: 6 },
-  { label: "Publicados", value: "Publicado", count: 4 },
-  { label: "Rascunhos", value: "Rascunho", count: 2 },
-]
-
-function normalizeText(value) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLocaleLowerCase("pt-BR")
-}
+const cursosIndicados = [
+    {
+        id: 1,
+        titulo: "Python para Automação de Processos",
+        plataforma: "coursera.org/usp",
+        descricao: "Curso prático de automação para estudantes brasileiros.",
+        impacto: "420 estudantes",
+    },
+];
 
 export function Perfil() {
-  const [activeTab, setActiveTab] = useState("Todos")
-  const [query, setQuery] = useState("")
-  const [sortOrder, setSortOrder] = useState("recentes")
+    const [foto, definirFoto] = useState("");
+    const usuario = new UsuarioService().getUsuarioLogado();
 
-  const visibleCourses = useMemo(() => {
-    const normalizedQuery = normalizeText(query.trim())
-    return courses
-      .filter((course) => {
-        const matchesTab = activeTab === "Todos" || course.status === activeTab
-        const matchesQuery = normalizeText(`${course.title} ${course.category}`).includes(normalizedQuery)
-        return matchesTab && matchesQuery
-      })
-      .sort((first, second) => {
-        if (sortOrder === "titulo") return first.title.localeCompare(second.title, "pt-BR")
-        return second.updated.localeCompare(first.updated)
-      })
-  }, [activeTab, query, sortOrder])
+    function selecionarFoto(evento) {
+        const arquivo = evento.target.files[0];
 
-  return (
-    <main className="author-dashboard">
-      <header className="author-topbar">
-        <nav className="author-breadcrumb" aria-label="Navegação estrutural">
-          <Link to="/home">Área do autor</Link>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page">Meus cursos</span>
-        </nav>
-        <p className="author-greeting">Olá, Marina</p>
-      </header>
+        // URL temporária. 
+        if (arquivo) definirFoto(URL.createObjectURL(arquivo));
+    }
 
-      <div className="author-content">
-        <header className="author-heading">
-          <div>
-            <p className="author-eyebrow">MEU ESPAÇO DE CRIAÇÃO</p>
-            <h1>Meus cursos</h1>
-            <p className="author-subtitle">Gerencie suas capacitações e compartilhe o que você sabe.</p>
-          </div>
-          <Link className="author-new-course" to="/indicar-curso">
-            <Plus size={16} aria-hidden="true" />
-            Novo curso
-          </Link>
-        </header>
+    const resumos = [
+        { id: "em-andamento", titulo: "Em andamento", quantidade: usuario?.cursosEmAndamento ?? 0,
+          descricao: "Cursos ativos hoje" },
+        { id: "indicados", titulo: "Indicados por você", quantidade: usuario?.cursosIndicados ?? 0,
+          descricao: "Contribuições à comunidade" },
+        { id: "salvos", titulo: "Salvos / Favoritos", quantidade: usuario?.cursosSalvos ?? 0,
+          descricao: "Trilhas na sua lista" },
+        { id: "certificados", titulo: "Certificados emitidos", quantidade: usuario?.certificadosEmitidos ?? 0,
+          descricao: "Comprovantes válidos" },
+    ];
 
-        <section className="author-stats" aria-label="Resumo dos cursos">
-          <article className="author-stat">
-            <div className="author-stat-top"><strong>6</strong><BookOpen size={16} aria-hidden="true" /></div>
-            <p>Total de cursos</p>
-          </article>
-          <article className="author-stat">
-            <div className="author-stat-top"><strong>4</strong><UsersRound size={16} aria-hidden="true" /></div>
-            <p>Publicados</p>
-          </article>
-          <article className="author-stat">
-            <div className="author-stat-top"><strong>2</strong><Pencil size={16} aria-hidden="true" /></div>
-            <p>Rascunhos</p>
-          </article>
-          <article className="author-stat">
-            <div className="author-stat-top"><strong>1.248</strong><UsersRound size={16} aria-hidden="true" /></div>
-            <p>Alunos inscritos</p>
-          </article>
-        </section>
+    return (
+        <>
+        <Navbar />
+        <main>
+            <section className="perfil-resumo" aria-label="Resumo do perfil">
+                <div className="perfil-informacoes">
+                    <div className="perfil-foto">
+                        {foto && (
+                            <img src={foto} alt="Prévia da foto de perfil" width="140" height="140" />
+                        )}
 
-        <section className="author-course-section" aria-label="Seus cursos">
-          <div className="author-toolbar">
-            <nav className="author-tabs" aria-label="Filtrar cursos por status">
-              {tabs.map((tab) => (
-                <button
-                  className={`author-tab${activeTab === tab.value ? " author-tab-active" : ""}`}
-                  type="button"
-                  key={tab.value}
-                  aria-pressed={activeTab === tab.value}
-                  onClick={() => setActiveTab(tab.value)}
-                >
-                  {tab.label}<span>{tab.count}</span>
-                </button>
-              ))}
-            </nav>
-            <label className="author-search">
-              <Search size={16} aria-hidden="true" />
-              <span className="visually-hidden">Buscar curso</span>
-              <input
-                type="search"
-                placeholder="Buscar curso..."
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-              />
-            </label>
-          </div>
-
-          <div className="author-list-heading">
-            <p aria-live="polite">
-              {visibleCourses.length} {visibleCourses.length === 1 ? "curso cadastrado" : "cursos cadastrados"}
-            </p>
-            <label className="author-sort">
-              <span className="visually-hidden">Ordenar cursos</span>
-              <select value={sortOrder} onChange={(event) => setSortOrder(event.target.value)}>
-                <option value="recentes">Mais recentes</option>
-                <option value="titulo">Ordem alfabética</option>
-              </select>
-              <ChevronDown size={14} aria-hidden="true" />
-            </label>
-          </div>
-
-          {visibleCourses.length > 0 ? (
-            <ul className="author-course-grid" aria-live="polite">
-              {visibleCourses.map((course) => (
-                <li key={course.title}>
-                  <article className={`author-course-card tone-${course.tone}`}>
-                    <header className="author-course-cover">
-                      <div>
-                        <p>{course.category}</p>
-                        <h2>{course.title}</h2>
-                      </div>
-                      <strong aria-hidden="true">{course.initials}</strong>
-                      <span className="author-course-index">{course.number}</span>
-                    </header>
-                    <div className="author-course-body">
-                      <div className="author-course-status-row">
-                        <span className={`author-course-status${course.status === "Rascunho" ? " status-draft" : ""}`}>
-                          {course.status}
+                        <span className="perfil-selo-foto" aria-hidden="true">
+                            <BadgeCheck size={20} strokeWidth={2.5} />
                         </span>
-                        <Ellipsis className="author-more" size={18} aria-hidden="true" />
-                      </div>
-                      {course.status === "Publicado" ? (
-                        <>
-                          <p className="author-course-description">{course.summary}</p>
-                          <div className="author-course-meta">
-                            <span><BookOpen size={13} aria-hidden="true" /> {course.lessons} aulas</span>
-                            <span><UsersRound size={13} aria-hidden="true" /> {course.students.toLocaleString("pt-BR")} alunos</span>
-                          </div>
-                        </>
-                      ) : (
-                        <div className="author-progress">
-                          <div className="author-progress-label"><span>{course.lessons} aulas adicionadas</span><span>{course.progress}% concluído</span></div>
-                          <div className="author-progress-track" role="progressbar" aria-label={`Progresso de ${course.title}`} aria-valuenow={course.progress} aria-valuemin={0} aria-valuemax={100}>
-                            <span style={{ width: `${course.progress}%` }} />
-                          </div>
-                        </div>
-                      )}
-                      <footer className="author-course-footer">
-                        <Link to="/cursos">{course.status === "Publicado" ? "Gerenciar curso" : "Continuar edição"}</Link>
-                        {course.status === "Rascunho" && <CalendarDays size={14} aria-label="Rascunho em edição" />}
-                        {course.status === "Publicado" && <ArrowRight size={15} aria-hidden="true" />}
-                      </footer>
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="author-empty-state" role="status">Nenhum curso encontrado. Tente outro termo ou filtro.</p>
-          )}
 
-          <footer className="author-results-footer">
-            <p>Mostrando {visibleCourses.length ? 1 : 0}–{visibleCourses.length} de {visibleCourses.length} cursos</p>
-            <p>Feito para ensinar. Criado por você.</p>
-          </footer>
-        </section>
-      </div>
-    </main>
-  )
+                        <label htmlFor="foto-perfil" aria-label="Escolher foto">
+                            <Camera size={16} aria-hidden="true" />
+                        </label>
+                        <input
+                            id="foto-perfil"
+                            type="file"
+                            accept="image/*"
+                            onChange={selecionarFoto}
+                        />
+                    </div>
+
+                    <div className="perfil-dados">
+                        <div className="perfil-titulo-usuario">
+                            <h1>Olá, {usuario?.nome ?? "usuário"}!</h1>
+                            <span className="perfil-situacao">Estudante ativa</span>
+                        </div>
+                        <p>{usuario?.email ?? "email não disponível"}</p>
+
+                        <button className="perfil-botao-editar" type="button">
+                            <UserRoundPen size={16} aria-hidden="true" />
+                            Editar perfil
+                        </button>
+                    </div>
+                </div>
+
+                <section className="perfil-cartoes-resumo" aria-label="Resumo dos cursos">
+                    {resumos.map((resumo) => (
+                        <article className="perfil-cartao-resumo" key={resumo.id}>
+                            <h2>{resumo.titulo}</h2>
+                            <p>{resumo.quantidade}</p>
+                            <p>{resumo.descricao}</p>
+                        </article>
+                    ))}
+                </section>
+            </section>
+
+            <section className="perfil-cursos-em-andamento" aria-label="Cursos em andamento">
+                <h2> Continue estudando!</h2>
+                <p>Retome rapidamente de onde parou com links diretos aos portais oficiais parceiros.</p>
+                {cursosEmAndamento.map((curso) => (
+                    <article
+                        className="perfil-cartao-curso perfil-cartao-curso-andamento"
+                        key={curso.id}
+                    >
+                        <div className="perfil-cabecalho-curso">
+                            <span className="perfil-categoria-curso">
+                                {curso.categoria}
+                            </span>
+                            <span className="perfil-plataforma-curso">
+                                
+                                {curso.plataforma}
+                            </span>
+                        </div>
+                        <h3>{curso.titulo}</h3>
+                        <p className="perfil-resumo-curso">{curso.resumo}</p>
+                        <div className="perfil-progresso">
+                            <div className="perfil-cabecalho-progresso">
+                                <span className="perfil-texto-progresso">
+                                    {curso.progresso}% Concluído
+                                </span>
+                                <span className="perfil-modulos-restantes">
+                                    {curso.modulosRestantes} módulos restantes
+                                </span>
+                            </div>
+                            <div
+                                className="perfil-barra-progresso"
+                                role="progressbar"
+                                aria-label={`Progresso no curso ${curso.titulo}`}
+                                aria-valuenow={curso.progresso}
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuetext={`${curso.progresso}% concluído`}
+                            >
+                                <span
+                                    className="perfil-progresso-atual"
+                                    style={{ width: `${curso.progresso}%` }}
+                                />
+                            </div>
+                        </div>
+                        <div className="perfil-rodape-curso">
+                            <span className="perfil-atividade-recente">
+                                <Clock size={16} aria-hidden="true" />
+                                {curso.ultimaAtividade}
+                            </span>
+
+                            {/* Clicáveis porém sem destino definido. Deve redirecionar para o curso do card.*/}
+                            <button
+                                className="perfil-botao-continuar"
+                                type="button"
+                            >
+                                Continuar
+                                <CircleArrowRight size={18} aria-hidden="true" />
+                            </button>
+                        </div>
+                    </article>
+                ))}
+            </section>
+        </main>
+
+        <footer className="perfil-rodape">
+            <div className="perfil-rodape-conteudo">
+                <div className="perfil-rodape-apresentacao">
+                    <p>
+                        Curadoria cidadã de capacitação pública, tecnologia e formação
+                        profissional totalmente gratuita.
+                    </p>
+                </div>
+
+                <nav className="perfil-rodape-coluna" aria-label="Navegação do rodapé">
+                    <h2>Navegação</h2>
+                    <ul>
+                        <li><Link to="/cursos">Cursos gratuitos</Link></li>
+                        <li><Link to="/perfil">Área de Estudo</Link></li>
+                        <li><span>Certificados válidos</span></li>
+                    </ul>
+                </nav>
+
+                <nav className="perfil-rodape-coluna" aria-label="Comunidade">
+                    <h2>Comunidade</h2>
+                    <ul>
+                        {/* Destinos sem rota definida; temporariamente não clicáveis. */}
+                        <li><Link to="/indicar">Indicar novo curso</Link></li>
+                        <li><span>Critérios de curadoria</span></li>
+                        <li><span>Diretrizes de qualidade</span></li>
+                        <li><span>Fale com a equipe</span></li>
+                    </ul>
+                </nav>
+
+                <section className="perfil-rodape-coluna" aria-labelledby="perfil-rodape-civico">
+                    <h2 id="perfil-rodape-civico">Compromisso cívico</h2>
+                    <p>
+                        Iniciativa aberta e sem custos ocultos para democratizar o
+                        conhecimento prático em todo o Brasil.
+                    </p>
+                    <strong className="perfil-rodape-selo">100% livre de cobranças</strong>
+                </section>
+            </div>
+
+            <nav className="perfil-rodape-links-legais" aria-label="Informações legais">
+
+                <ul>
+                    {/* Destinos sem rota definida; temporariamente não clicáveis. */}
+         
+                    <li><span>Privacidade</span></li>
+                    <li><span>Termos de uso</span></li>
+                    <li><span>Acessibilidade</span></li>
+                </ul>
+            </nav>
+        </footer>
+      </>
+    )
 }

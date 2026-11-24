@@ -1,0 +1,26 @@
+[
+    {
+        "nome": "Tecnologia & Dados",
+        "descricao": "Programação, dados e novas tecnologias para o futuro.",
+        "nomeIcone": "square-terminal",
+        "cor": "blue"
+    },
+    {
+        "nome": "Educação Financeira",
+        "descricao": "Aprenda a cuidar do seu dinheiro e planejar seus sonhos.",
+        "nomeIcone": "wallet-cards",
+        "cor": "orange"
+    },
+    {
+        "nome": "Setor Público & Gov.br",
+        "descricao": "Oportunidades e formação para transformar o setor público.",
+        "nomeIcone": "landmark",
+        "cor": "green"
+    },
+    {
+        "nome": "Empreendedorismo", 
+        "descricao": "Tire suas ideias do papel e faça seu negócio crescer.",
+        "nomeIcone": "rocket",
+        "cor": "red"
+    }
+]

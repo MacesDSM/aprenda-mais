@@ -1,17 +1,18 @@
 import { AutorService } from "./AutorService.mjs";
 import { BaseService } from "./BaseService.mjs";
+import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
 import { EstudanteService } from "./EstudanteService.mjs";
+import { tipoUsuarioRegExp } from "./TipoUsuario.mjs";
 
 /**
  * Classe que traz os comandos de perssistência de dados do usuário.
  */
 export class UsuarioService extends BaseService {
-    tipoUsuarioRegExp;
     constructor() {
         super("usuario");
         this.estudanteService = new EstudanteService();
         this.autorService = new AutorService();
-        this.tipoUsuarioRegExp = /autor|estudante/i;
+        this.categoriaCursoService = new CategoriaCursoService();
     }
 
     /**
@@ -92,7 +93,7 @@ export class UsuarioService extends BaseService {
      * @returns Objeto do usuário cadastrado.
      */
     save(request) {
-        if(!request.tipoUsuario || !this.tipoUsuarioRegExp.test(request.tipoUsuario)) {
+        if(!request.tipoUsuario || !tipoUsuarioRegExp.test(request.tipoUsuario)) {
             throw new Error("Tipo de usuário não encontrado ou inválido");
         }
 

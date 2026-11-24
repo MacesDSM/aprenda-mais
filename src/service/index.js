@@ -5,3 +5,6 @@ export * from "./CursoService.mjs";
 export * from "./EstudanteService.mjs";
 export * from "./LoadMock.mjs";
 export * from "./UsuarioService.mjs";
+export * from "./StatusCurso.mjs";
+export * from "./StatusAutor.mjs";
+export * from "./CategoriaCursoService.mjs";
