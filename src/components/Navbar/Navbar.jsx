@@ -2,6 +2,7 @@ import { LogIn, LogOut, Search, UserRound, UsersRound } from "lucide-react";
 import { Link, useNavigate } from "react-router";
 import "./style.css";
 import { UsuarioService } from "../../service";
+import { Logo } from "../Logo/Logo";
 
 const usuarioService = new UsuarioService();
 
@@ -22,6 +23,7 @@ export function Navbar({ applySearch, query, setQuery }) {
   return (
       <header className="site-header">
       <section className="header-inner" aria-label="Acesso rápido">
+        <Logo />
         <form className="header-search" role="search" onSubmit={applySearch}>
           <Search size={14} aria-hidden="true" />
           <input

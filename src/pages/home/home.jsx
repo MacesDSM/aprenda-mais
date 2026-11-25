@@ -24,13 +24,18 @@ import {
 import { Link } from "react-router"
 import "./home.css"
 import { Footer, Navbar } from "../../components"
+import { HeroHome } from "./HeroHome"
+import { CategoriaCursoService } from "../../service"
+import { CategoriaHome } from "./CategoriaHome/CategoriaHome"
 
-const categories = [
+/**
+ * const categories = [
   { name: "Tecnologia & Dados", filter: "Tecnologia", description: "Programação, dados e novas tecnologias para o futuro.", icon: SquareTerminal, tone: "blue" },
   { name: "Educação Financeira", filter: "Finanças", description: "Aprenda a cuidar do seu dinheiro e planejar seus sonhos.", icon: WalletCards, tone: "orange" },
   { name: "Setor Público & Gov.br", filter: "Setor Público", description: "Oportunidades e formação para transformar o setor público.", icon: Landmark, tone: "green" },
   { name: "Empreendedorismo", filter: "Empreendedorismo", description: "Tire suas ideias do papel e faça seu negócio crescer.", icon: Rocket, tone: "red" },
 ]
+ */
 
 const courses = [
   {
@@ -96,7 +101,7 @@ const developerBenefits = [
 ]
 
 const courseFilters = ["Todos", "Tecnologia", "Finanças", "Empreendedorismo", "Setor Público"]
-const popularSearches = ["Tecnologia", "Finanças", "Empreendedorismo"]
+
 
 // Padroniza acentos e caixa para que buscas como "financas" encontrem "Finanças".
 function normalizeText(value) {
@@ -105,6 +110,8 @@ function normalizeText(value) {
     .replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("pt-BR")
 }
+
+const categoriaService = new CategoriaCursoService();
 
 export function Home() {
   // O termo aplicado fica separado do texto digitado para permitir buscar ao enviar o formulário.
@@ -134,82 +141,16 @@ export function Home() {
     setActiveFilter("Todos")
     document.getElementById("cursos")?.scrollIntoView({ behavior: "smooth" })
   }
-
+  const categories = categoriaService.findAll();
+  
   return (
     <section className="home-page" aria-label="Página inicial">
       <Navbar applySearch={applySearch} query={query} setQuery={setQuery}/>
 
       <main>
-        <section className="hero-section" aria-labelledby="hero-title">
-          <article className="hero-content">
-            <h1 id="hero-title">Descubra cursos que <strong>iluminam</strong> o<br className="hero-title-break" /> seu caminho.</h1>
-            <p className="hero-description">
-              O Conheça Mais é uma plataforma comunitária aberta que reúne, organiza e explica cursos
-              gratuitos de alta qualidade das melhores instituições públicas do país.
-            </p>
+        <HeroHome />
 
-            <aside className="hero-notice">
-              <Info size={15} aria-hidden="true" />
-              <p>
-                Não hospedamos nem cobramos por cursos: conectamos você com transparência e links
-                diretos às plataformas oficiais (Gov.br, FGV, Sebrae, MEC, etc.).
-              </p>
-            </aside>
-
-            <form className="course-search" role="search" onSubmit={applySearch}>
-              <Search size={19} aria-hidden="true" />
-              <input
-                className="search-placeholder"
-                type="search"
-                placeholder="O que você gostaria de aprender? Ex.: Python, finanças..."
-                aria-label="O que você gostaria de aprender?"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-              />
-              <button className="button button-primary search-button" type="submit">
-                Buscar cursos <ArrowRight size={16} aria-hidden="true" />
-              </button>
-            </form>
-
-            {/* Pesquisas sugeridas aplicam o termo e levam o foco aos resultados. */}
-            <section className="popular-searches" aria-label="Pesquisas populares">
-              <p>Mais buscados:</p>
-              <ul>
-                {popularSearches.map((term) => (
-                  <li key={term}>
-                    <button type="button" onClick={() => selectPopularSearch(term)}>{term}</button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </article>
-        </section>
-
-        <section className="category-section content-width" aria-label="Categorias de cursos">
-          <ul className="category-grid">
-            {categories.map(({ name, description, icon: Icon, tone, filter }) => (
-              <li key={name}>
-                <button
-                  className={`category-card category-${tone}`}
-                  type="button"
-                  onClick={() => {
-                    setActiveFilter(filter)
-                    setSearchTerm("")
-                    setQuery("")
-                    document.getElementById("cursos")?.scrollIntoView({ behavior: "smooth" })
-                  }}
-                >
-                  <figure className="icon-badge category-icon" aria-hidden="true"><Icon size={19} /></figure>
-                  <article className="category-copy">
-                    <strong>{name}</strong>
-                    <p>{description}</p>
-                  </article>
-                  <ChevronRight className="category-arrow" size={17} aria-hidden="true" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <CategoriaHome />        
 
         {/* Os filtros e resultados compartilham o mesmo estado de busca da página. */}
         <section className="courses-section content-width" id="cursos" aria-labelledby="courses-title">
@@ -296,7 +237,6 @@ export function Home() {
                   <figure className={`icon-badge benefit-icon benefit-${tone}`} aria-hidden="true"><Icon size={19} /></figure>
                   <h3>{title}</h3>
                   <p>{description}</p>
-                  <Link className="benefit-link" to="/sobre">Saiba mais <ArrowRight size={14} aria-hidden="true" /></Link>
                 </article>
               </li>
             ))}

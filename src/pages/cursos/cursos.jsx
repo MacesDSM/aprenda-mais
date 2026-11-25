@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import "./cursos.css";
 import { Footer, Navbar } from "../../components";
+import { IndicarCurso } from "./IndicarCurso";
+import { ResumoCursos } from "./ResumoCursos";
 
   /* Cards demonstrativos.*/
 
@@ -221,34 +223,7 @@ export function Cursos() {
       <Navbar />
 
       <main className="cursos-conteudo">
-        <section className="Cursos-resumo-inicio">
-          <div className="cartao-cursos-verificado">
-            <BadgeCheck size={12} aria-hidden="true" />
-            {" "}
-            <span>CURADORIA VERIFICADA & SEM FINS LUCRATIVOS</span>
-          </div>
-          <div className="cursos-introducao">
-            <div className="informacoes-curso">
-              <h1>Explore Cursos Gratuitos</h1>
-              <p>
-                Capacitação pública de alto nível com certificações oficiais do
-                Gov.br, EV.G, Sebrae, MEC e instituições de ponta.
-              </p>
-            </div>
-            <div className="Botoes-curso-direcionar">
-              <Link to="/sobre" className="curso-botao-sobre">
-                <Info size={13} aria-hidden="true" />
-                {" "}
-                Sobre o Projeto & Desenvolvedores
-              </Link>
-              <Link to="/indicar" className="curso-botao-indicar">
-                <CirclePlus size={14} aria-hidden="true" />
-                {" "}
-                Adicionar Novo Curso
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ResumoCursos />
 
         <section className="Botoes-cursos" aria-label="Filtros de cursos">
           <div className="filtros-categorias">
@@ -449,113 +424,8 @@ export function Cursos() {
             </div>
           </div>
 
-          <aside className="cursos-coluna-lateral">
-            <section className="card-indicar-curso" aria-labelledby="titulo-indicar-curso">
-              <div className="indicacao-cabecalho">
-                <div>
-                  <span className="indicacao-icone">
-                    <CirclePlus size={14} aria-hidden="true" />
-                  </span>
-                  <h2 id="titulo-indicar-curso">
-                    Indicar Curso Gratuito
-                  </h2>
-                </div>
-                <span className="indicacao-colaborativa">Colaborativo</span>
-              </div>
-              <p className="indicacao-descricao">
-                Ajude a comunidade compartilhando capacitações gratuitas e
-                oficiais.
-              </p>
-              <form className="indicacao-form" onSubmit={enviarIndicacao}>
-                <div className="indicacao-campos">
-                  <div className="indicacao-campo">
-                    <label className="indicacao-rotulo" htmlFor="indicacao-titulo">
-                      Nome do Curso
-                    </label>
-                    <input
-                      className="indicacao-input"
-                      id="indicacao-titulo"
-                      name="titulo"
-                      type="text"
-                      placeholder="Ex: Gestão de Projetos Ágeis"
-                      required
-                    />
-                  </div>
-                  <label className="indicacao-rotulo" htmlFor="indicacao-link">
-                    Link Oficial Direto
-                  </label>
-                  <div className="indicacao-link">
-                    <Globe size={13} aria-hidden="true" />
-                    <input
-                      className="indicacao-input"
-                      id="indicacao-link"
-                      name="link"
-                      type="url"
-                      placeholder="https://www.gov.br/..."
-                      required
-                    />
-                  </div>
-                  <div className="indicacao-linha">
-                    <div className="indicacao-campo">
-                      <label
-                        className="indicacao-rotulo"
-                        htmlFor="indicacao-instituicao"
-                      >
-                        Instituição
-                      </label>
-                      <input
-                        className="indicacao-input"
-                        id="indicacao-instituicao"
-                        name="instituicao"
-                        type="text"
-                        placeholder="Ex: Enap, USP"
-                        required
-                      />
-                    </div>
-                    <div className="indicacao-campo">
-                      <label
-                        className="indicacao-rotulo"
-                        htmlFor="indicacao-categoria"
-                      >
-                        Área
-                      </label>
-                      <select
-                        className="indicacao-input"
-                        id="indicacao-categoria"
-                        name="categoria"
-                        defaultValue=""
-                        required
-                      >
-                        <option value="" disabled>
-                          Selecionar
-                        </option>
-                        {categorias.slice(1).map((categoria) => (
-                          <option key={categoria} value={categoria}>
-                            {categoria}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <button className="botao-enviar-indicacao" type="submit">
-                  Enviar Sugestão
-                  <Send size={14} aria-hidden="true" />
-                </button>
-              </form>
-            </section>
+          <IndicarCurso />
 
-            <section className="card-curadoria">
-              <div className="curadoria-icone">
-                <BadgeCheck size={15} aria-hidden="true" />
-              </div>
-              <div>
-                <h2>Curadoria Humana</h2>
-                <p>Sem taxas, sem pegadinhas.</p>
-              </div>
-              <span>100% Livre</span>
-            </section>
-          </aside>
         </div>
       </main>
 
