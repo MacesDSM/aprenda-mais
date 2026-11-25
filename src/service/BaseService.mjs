@@ -41,6 +41,9 @@ export class BaseService {
      * @throws Caso o registro não tenha uma correspondência, gera uma exceção.
      */
     findById(id) {
+        if(!id) {
+            return null;
+        }
         const registo = this.findAll()
             .filter(r=>r.id===id)[0];
         if(registo) {

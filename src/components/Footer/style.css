@@ -1,0 +1,22 @@
+/* Rodapé institucional e links de navegação secundária. */
+
+.site-footer ul {
+    list-style: none;
+}
+
+.site-footer { padding-top: 40px; background: #f7f8fc; border-top: 1px solid #eceef4; }
+.footer-inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.15fr; gap: 35px; padding-bottom: 32px; }
+.footer-brand .brand { font-size: 18px; }
+.footer-brand .brand-mark { width: 32px; height: 32px; }
+.footer-brand > p { margin: 14px 0; color: #707b91; font-size: 13px; line-height: 1.6; }
+.footer-brand .brand p { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
+.footer-note { display: inline-flex; align-items: center; gap: 6px; color: #737fa3; font-size: 12px; }
+.footer-note svg { color: #e5a331; }
+.footer-column { display: grid; align-content: start; justify-items: start; gap: 12px; padding-top: 7px; }
+.footer-column h2 { margin: 0 0 2px; color: #34405a; font-size: 13px; }
+.footer-column ul { display: grid; gap: 12px; }
+.footer-column a { color: #707b90; font-size: 12px; }
+.footer-column a:hover { color: var(--home-blue); }
+.footer-bottom { display: flex; min-height: 52px; align-items: center; justify-content: space-between; gap: 18px; color: #7d8799; border-top: 1px solid #e8eaf0; font-size: 11px; }
+.footer-bottom p { margin: 0; }
+.footer-bottom ul { display: flex; gap: 17px; }
