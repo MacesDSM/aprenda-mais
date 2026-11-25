@@ -7,6 +7,8 @@ import { Cursos, Home, Login, Perfil, Sobre, Cadastro } from './pages'
 import { mock } from './service/LoadMock.mjs'
 import { UsuarioService } from './service'
 import Administrador from './pages/administrador/adiminstrador'
+import { ExclusiveLayout, PrivateLayout, PublicLayout } from './components/layout'
+import { tipoUsuario } from './service/TipoUsuario.mjs'
 
 // Usar para testar c/ dados falsos
 const service = new UsuarioService();
@@ -19,13 +21,26 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        {/* Rotas públicas */}
         <Route path='home' element={<Home />}/>
         <Route path='cursos' element={<Cursos />}/>
-        <Route path='login' element={<Login />}/>
-        <Route path='perfil' element={<Perfil />}/>
         <Route path='sobre' element={<Sobre />}/>
-        <Route path='cadastro' element={<Cadastro />} />
-        <Route path='administrador' element={<Administrador />} />
+
+        {/* Rotas exclusivamente para usuários não logados */}
+        <Route element={<PublicLayout />}>
+          <Route path='login' element={<Login />}/>
+          <Route path='cadastro' element={<Cadastro />}/>
+        </Route>
+
+        {/* Rotas exclusivamente para usuários logados */}
+        <Route element={<PrivateLayout />}>
+          <Route path='perfil' element={<Perfil />}/>
+        </Route>
+
+        {/* Rotas exclusivamente para administradores */}
+        <Route element={<ExclusiveLayout role={tipoUsuario.admin} />}>
+          <Route path='administrador' element={<Administrador />} />
+        </Route>
 
         {/* Rota coringa que redireciona para Home */}
         <Route path="*" element={<Navigate to="/home" />} />

@@ -46,12 +46,15 @@ main:has(.perfil-resumo) {
     width: min(1120px, 100%); margin: 0 auto;
 }
 .perfil-resumo {
-    padding: 24px;
+    display: flex;
+
+    padding: 1rem 3rem;
     background:
         radial-gradient(ellipse at left bottom, #fff4e9 0%, transparent 55%),
         radial-gradient(ellipse at right top, #eef3ff 0%, transparent 55%),
         #fff;
     border: 1px solid #eef0f6; border-radius: 14px;
+    gap: 5rem;
     box-shadow: 0 4px 18px rgba(37, 57, 110, 0.04);
 }
 .perfil-informacoes {
@@ -123,22 +126,23 @@ main:has(.perfil-resumo) {
     display: inline-flex; align-items: center;
     padding: 5px 8px; color: #2457a7;
     background: #eaf0ff; border-radius: 999px;
-    font-size: 11px; font-weight: 600;
+    font-size: 14px; font-weight: 600;
 }
 .perfil-botao-editar {
     display: inline-flex; justify-self: start;
     align-items: center; gap: 5px;
     padding: 0; color: var(--perfil-azul);
     background: none; border: 0;
-    font: inherit; font-size: 12px;
+    font: inherit; font-size: 14px;
     cursor: pointer;
 }
-.perfil-cartoes-resumo {
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-}
 .perfil-cartao-resumo {
-    min-width: 0; padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 15rem;
+    gap: 1rem;
+    padding: 1.1rem 0.5rem;
     background: #eef3ff; border-left: 3px solid var(--perfil-azul);
     border-radius: 9px;
 }
@@ -148,15 +152,6 @@ main:has(.perfil-resumo) {
 .perfil-cartao-resumo h2 {
     margin: 0 0 7px; color: #4c566d;
     font-size: 12px; font-weight: 500;
-}
-.perfil-cartao-resumo p:first-of-type {
-    margin: 0 0 3px; color: var(--perfil-azul-escuro);
-    font-size: 25px; font-weight: 700;
-    line-height: 1.1;
-}
-.perfil-cartao-resumo p:last-of-type {
-    margin: 0; color: #4c566d;
-    font-size: 11px;
 }
 .perfil-cursos-em-andamento,
 .perfil-cursos-indicados {
@@ -191,7 +186,7 @@ main:has(.perfil-resumo) {
 .perfil-cursos-em-andamento > p,
 .perfil-cursos-indicados > p {
     margin: 0 0 2px; color: var(--perfil-texto-suave);
-    font-size: 12px; line-height: 1.5;
+    font-size: 16px; line-height: 1.5;
 }
 .perfil-cursos-indicados > h2 {
     grid-column: 1; grid-row: 1;

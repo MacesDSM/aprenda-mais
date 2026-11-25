@@ -1,19 +1,21 @@
 import React from 'react';
 import './sobre.css';
-import { Navbar } from '../../components';
+import { Footer, Navbar } from '../../components';
+import { UsuarioService } from '../../service';
+
+
+const usuarioService = new UsuarioService();
 
 export function Sobre() {
   const handleInscrever = () => {
     alert('Você será redirecionado para a página de cadastro!');
   };
 
-  const handleSaibaMais = () => {
-    alert('Abrindo mais informações...');
-  };
+  const usuarioLogado = usuarioService.findById(usuarioService.getUsuarioLogado()?.id);
 
   return (
     <>
-      <Navbar />
+    <Navbar />
     <div className="sobre-container">
       <div className="sobre-cabecalho">
         <h1>Sobre o Projeto & Desenvolvedores</h1>
@@ -78,14 +80,17 @@ export function Sobre() {
       </section>
 
       <div className="botoes-acao">
-        <button className="btn btn-principal" onClick={handleInscrever}>
+        {!usuarioLogado && (
+          <button className="btn btn-principal" onClick={handleInscrever}>
           Inscreva-se agora — é gratuito!
-        </button>
-        <button className="btn btn-secundario" onClick={handleSaibaMais}>
-          Saiba mais sobre o projeto
-        </button>
+          </button>
+        )}
+        <a className="btn btn-secundario" href="https://github.com/MacesDSM/aprenda-mais" target="_blank" rel="noopener noreferrer">
+          Consulte nosso código-fonte no GitHub
+        </a>
       </div>
     </div>
+    <Footer />
     </>
   );
 }

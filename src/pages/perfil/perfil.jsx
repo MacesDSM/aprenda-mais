@@ -1,20 +1,11 @@
-/*
-Muitas funções precisam de conexões das quais eu não soube fazer,
-a maioria das funcionalidasdes utilizam dados temporários,
-se tiverem tempo para revisar o código e ajustar essas questões!
-*/
-
-
-
-
 import { useState } from "react";
 import { Link } from "react-router";
 import {
     Camera, CirclePlus, UserRoundPen, BadgeCheck, Clock, CircleArrowRight, Link2, UsersRound,
 } from "lucide-react";
-import { UsuarioService } from "../../service";
+import { EstudanteService, UsuarioService } from "../../service";
 import "./perfil.css";
-import { Navbar } from "../../components";
+import { Footer, Navbar } from "../../components";
 
 // Dados temporários; substituir pelos dados do serviço quando estiver disponível.
 const cursosEmAndamento = [
@@ -40,68 +31,25 @@ const cursosEmAndamento = [
     },
 ];
 
-const cursosIndicados = [
-    {
-        id: 1,
-        titulo: "Python para Automação de Processos",
-        plataforma: "coursera.org/usp",
-        descricao: "Curso prático de automação para estudantes brasileiros.",
-        impacto: "420 estudantes",
-    },
-];
+const usuarioService = new UsuarioService();
+const estudanteService = new EstudanteService();
 
 export function Perfil() {
-    const [foto, definirFoto] = useState("");
-    const usuario = new UsuarioService().getUsuarioLogado();
+    const usuario = usuarioService.findById(usuarioService.getUsuarioLogado()?.id);
 
-    function selecionarFoto(evento) {
-        const arquivo = evento.target.files[0];
+    const estudante = estudanteService.findById(usuario.id);
 
-        // URL temporária. 
-        if (arquivo) definirFoto(URL.createObjectURL(arquivo));
-    }
-
-    const resumos = [
-        { id: "em-andamento", titulo: "Em andamento", quantidade: usuario?.cursosEmAndamento ?? 0,
-          descricao: "Cursos ativos hoje" },
-        { id: "indicados", titulo: "Indicados por você", quantidade: usuario?.cursosIndicados ?? 0,
-          descricao: "Contribuições à comunidade" },
-        { id: "salvos", titulo: "Salvos / Favoritos", quantidade: usuario?.cursosSalvos ?? 0,
-          descricao: "Trilhas na sua lista" },
-        { id: "certificados", titulo: "Certificados emitidos", quantidade: usuario?.certificadosEmitidos ?? 0,
-          descricao: "Comprovantes válidos" },
-    ];
-
+    console.log(estudante.cursos);
     return (
         <>
         <Navbar />
         <main>
             <section className="perfil-resumo" aria-label="Resumo do perfil">
                 <div className="perfil-informacoes">
-                    <div className="perfil-foto">
-                        {foto && (
-                            <img src={foto} alt="Prévia da foto de perfil" width="140" height="140" />
-                        )}
-
-                        <span className="perfil-selo-foto" aria-hidden="true">
-                            <BadgeCheck size={20} strokeWidth={2.5} />
-                        </span>
-
-                        <label htmlFor="foto-perfil" aria-label="Escolher foto">
-                            <Camera size={16} aria-hidden="true" />
-                        </label>
-                        <input
-                            id="foto-perfil"
-                            type="file"
-                            accept="image/*"
-                            onChange={selecionarFoto}
-                        />
-                    </div>
-
                     <div className="perfil-dados">
                         <div className="perfil-titulo-usuario">
                             <h1>Olá, {usuario?.nome ?? "usuário"}!</h1>
-                            <span className="perfil-situacao">Estudante ativa</span>
+                            <span className="perfil-situacao">Estudante ativo(a)</span>
                         </div>
                         <p>{usuario?.email ?? "email não disponível"}</p>
 
@@ -113,20 +61,17 @@ export function Perfil() {
                 </div>
 
                 <section className="perfil-cartoes-resumo" aria-label="Resumo dos cursos">
-                    {resumos.map((resumo) => (
-                        <article className="perfil-cartao-resumo" key={resumo.id}>
-                            <h2>{resumo.titulo}</h2>
-                            <p>{resumo.quantidade}</p>
-                            <p>{resumo.descricao}</p>
-                        </article>
-                    ))}
+                    <article className="perfil-cartao-resumo">
+                        <p className="text-sm font-medium">Cursos Salvos</p>
+                        <p>0</p>
+                    </article>
                 </section>
             </section>
 
             <section className="perfil-cursos-em-andamento" aria-label="Cursos em andamento">
-                <h2> Continue estudando!</h2>
+                <h2>Cursos Salvos</h2>
                 <p>Retome rapidamente de onde parou com links diretos aos portais oficiais parceiros.</p>
-                {cursosEmAndamento.map((curso) => (
+                {estudante.cursos.map((curso) => (
                     <article
                         className="perfil-cartao-curso perfil-cartao-curso-andamento"
                         key={curso.id}
@@ -183,59 +128,11 @@ export function Perfil() {
                         </div>
                     </article>
                 ))}
+                {estudante.cursos < 1 && <p>Nenhum curso salvo</p>}
             </section>
         </main>
 
-        <footer className="perfil-rodape">
-            <div className="perfil-rodape-conteudo">
-                <div className="perfil-rodape-apresentacao">
-                    <p>
-                        Curadoria cidadã de capacitação pública, tecnologia e formação
-                        profissional totalmente gratuita.
-                    </p>
-                </div>
-
-                <nav className="perfil-rodape-coluna" aria-label="Navegação do rodapé">
-                    <h2>Navegação</h2>
-                    <ul>
-                        <li><Link to="/cursos">Cursos gratuitos</Link></li>
-                        <li><Link to="/perfil">Área de Estudo</Link></li>
-                        <li><span>Certificados válidos</span></li>
-                    </ul>
-                </nav>
-
-                <nav className="perfil-rodape-coluna" aria-label="Comunidade">
-                    <h2>Comunidade</h2>
-                    <ul>
-                        {/* Destinos sem rota definida; temporariamente não clicáveis. */}
-                        <li><Link to="/indicar">Indicar novo curso</Link></li>
-                        <li><span>Critérios de curadoria</span></li>
-                        <li><span>Diretrizes de qualidade</span></li>
-                        <li><span>Fale com a equipe</span></li>
-                    </ul>
-                </nav>
-
-                <section className="perfil-rodape-coluna" aria-labelledby="perfil-rodape-civico">
-                    <h2 id="perfil-rodape-civico">Compromisso cívico</h2>
-                    <p>
-                        Iniciativa aberta e sem custos ocultos para democratizar o
-                        conhecimento prático em todo o Brasil.
-                    </p>
-                    <strong className="perfil-rodape-selo">100% livre de cobranças</strong>
-                </section>
-            </div>
-
-            <nav className="perfil-rodape-links-legais" aria-label="Informações legais">
-
-                <ul>
-                    {/* Destinos sem rota definida; temporariamente não clicáveis. */}
-         
-                    <li><span>Privacidade</span></li>
-                    <li><span>Termos de uso</span></li>
-                    <li><span>Acessibilidade</span></li>
-                </ul>
-            </nav>
-        </footer>
+        <Footer />
       </>
     )
 }

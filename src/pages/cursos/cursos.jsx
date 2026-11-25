@@ -13,7 +13,7 @@ import {
   ArrowDownUp, BadgeCheck, ChevronLeft, ChevronRight, CirclePlus,Clock3, ExternalLink, Globe, GraduationCap, Info,Search, Send, Star,
 } from "lucide-react";
 import "./cursos.css";
-import { Navbar } from "../../components";
+import { Footer, Navbar } from "../../components";
 
   /* Cards demonstrativos.*/
 
@@ -559,63 +559,7 @@ export function Cursos() {
         </div>
       </main>
 
-      <footer className="rodape-cursos">
-        <div className="rodape-conteudo">
-          <div className="rodape-marca">
-            <span className="rodape-logo">
-              <span className="rodape-simbolo">
-                <GraduationCap
-                  size={21}
-                  strokeWidth={2.4}
-                  aria-hidden="true"
-                />
-              </span>
-              <span>
-                aprenda<span className="rodape-destaque">+</span>
-              </span>
-            </span>
-            <p> Conhecimento abre portas.<br /> A gente ajuda você a encontrar a sua. </p>
-            <span className="rodape-nota">
-              <Star size={13} fill="currentColor" aria-hidden="true" />
-              {" "}
-              Educação acessível para todos
-            </span>
-          </div>
-          <div className="rodape-coluna">
-            <strong>Plataforma</strong>
-            <Link to="/cursos">Explorar cursos</Link>
-            <Link to="/indicar">Indicar um curso</Link>
-            <Link to="/sobre">Sobre o projeto</Link>
-          </div>
-          <div className="rodape-coluna">
-              {/*Botões temporariamente indisponíveis.
-            Alterar quando tiverem destino.*/}
-            <strong>Materiais & Recursos</strong>
-            <span>Tecnologia & Dados</span>
-            <span>Educação financeira</span>
-            <span>Empreendedorismo</span>
-          </div>
-          <div className="rodape-coluna">
-            <strong>Comunidade & Ajuda</strong>
-            <Link to="/sobre">Conheça o projeto</Link>
-            <Link to="/indicar">Compartilhe oportunidades</Link>
-            <Link to="/perfil">Acesse sua conta</Link>
-          </div>
-        </div>
-        <div className="rodape-final">
-          <span>
-            © {new Date().getFullYear()} Aprenda Mais. Feito para aprender e
-            compartilhar.
-          </span>
-          <div>
-            {/*Botões temporariamente indisponíveis.
-            Alterar quando tiverem destino.*/}
-            <span>Termos de Uso</span>
-            <span>Privacidade</span>
-            <span>Acessibilidade</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
