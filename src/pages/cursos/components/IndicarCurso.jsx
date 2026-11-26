@@ -36,7 +36,7 @@ export function IndicarCurso() {
                       Nome do Curso
                     </label>
                     <input
-                      className="indicacao-input"
+                      className="input"
                       id="indicacao-titulo"
                       name="titulo"
                       type="text"
@@ -47,10 +47,10 @@ export function IndicarCurso() {
                   <label className="indicacao-rotulo" htmlFor="indicacao-link">
                     Link Oficial Direto
                   </label>
-                  <div className="indicacao-link">
-                    <Globe size={13} aria-hidden="true" />
+                  <div className="input-group">
+                    <Globe className="icon" size={20} aria-hidden="true" />
                     <input
-                      className="indicacao-input"
+                      className="input"
                       id="indicacao-link"
                       name="link"
                       type="url"
@@ -67,7 +67,7 @@ export function IndicarCurso() {
                         Instituição
                       </label>
                       <input
-                        className="indicacao-input"
+                        className="input"
                         id="indicacao-instituicao"
                         name="instituicao"
                         type="text"
@@ -83,7 +83,7 @@ export function IndicarCurso() {
                         Área
                       </label>
                       <select
-                        className="indicacao-input"
+                        className="input "
                         id="indicacao-categoria"
                         name="categoria"
                         defaultValue=""
@@ -101,8 +101,8 @@ export function IndicarCurso() {
                     </div>
                   </div>
                 </div>
-                <button className="botao-enviar-indicacao" type="submit">
-                  Enviar Sugestão
+                <button className="button button-primary" type="submit">
+                  <p className="text-xs">Enviar Sugestão</p>
                   <Send size={14} aria-hidden="true" />
                 </button>
               </form>

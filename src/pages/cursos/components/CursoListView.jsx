@@ -1,14 +1,24 @@
-import { BadgeCheck, ChevronLeft, ChevronRight, Clock3, ExternalLink, Info } from "lucide-react";
+import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import { useState } from "react";
-import { CursoService } from "../../../service";
+import { CursoService, statusCurso } from "../../../service";
+import { CursoItem } from "./CursoItem";
+import { CursoSpecifications } from "../../../service/specifications/CursoSpecifications.mjs";
+import { useSearchParams } from "react-router";
 
 const cursoService = new CursoService();
 
 export function CursoListView() {
     const [paginaAtual, setPaginaAtual] = useState(1);
+    const [searchParams, _] = useSearchParams();
 
-    const cursos = cursoService.findAll();
+    const listaCursos = cursoService.findAll();
 
+    // Aplica os filtros usando o Builder Pattern
+    const cursos = new CursoSpecifications(listaCursos)
+      .specOrdemByData(searchParams.get("ordem") || "asc")
+      .specCategoriaId(searchParams.get("categoriaId"))
+      .specStatusCurso(statusCurso.aprovado)
+      .build();
 
     return (
         <div className="cursos-coluna-principal">
@@ -37,48 +47,7 @@ export function CursoListView() {
             >
               {cursos.length ? (
                 cursos.map((curso) => (
-                  <article
-                    className={`cartao-curso`}
-                    key={curso.id}
-                  >
-                    <div className="curso-provedor">
-                      <span>
-                        <i aria-hidden="true" /> Plataforma Hospedeira:
-                        {curso.autor && <strong>{curso.autor.nome}</strong>}
-                      </span>
-                      <span className="curso-selo">{curso.certificado}</span>
-                    </div>
-                    <h2>{curso.titulo}</h2>
-                    <div className="curso-resumo">
-                      <span className="curso-resumo-titulo">
-                        DO QUE SE TRATA ESTE CURSO:
-                      </span>
-                      <p>{curso.resumo}</p>
-                    </div>
-                    <div className="curso-metadados">
-                      <span>
-                        <Clock3 size={12} aria-hidden="true" />
-                        {curso.horasdecurso}h totais
-                      </span>
-                      <span>
-                        <BadgeCheck size={12} aria-hidden="true" />
-                        {curso.modalidade}
-                      </span>
-                      <span className="curso-gratuito">
-                        <BadgeCheck size={12} aria-hidden="true" />
-                        100% Gratuito
-                      </span>
-                    </div>
-                    <a
-                      className="diretorio-direcionar"
-                      href={curso.link}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Ir para a plataforma oficial{" "}
-                      <ExternalLink size={12} aria-hidden="true" />
-                    </a>
-                  </article>
+                  <CursoItem key={curso.id} curso={curso} />
                 ))
               ) : (
                 <p className="cursos-vazios">
@@ -88,7 +57,6 @@ export function CursoListView() {
               )}
             </section>
             {/* Fim cards demonstrativos.*/}
-
 
             <div className="cursos-paginacao">
               <p>
