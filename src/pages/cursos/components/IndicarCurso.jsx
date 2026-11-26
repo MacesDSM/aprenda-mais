@@ -1,6 +1,5 @@
 import { BadgeCheck, CirclePlus, Globe, Send } from "lucide-react";
-import "./cursos.css";
-import { CategoriaCursoService } from "../../service";
+import { CategoriaCursoService } from "../../../service";
 
 const categoriaCursoService = new CategoriaCursoService();
 
@@ -10,8 +9,6 @@ export function IndicarCurso() {
 
     function submit(event) {
         event.preventDefault();
-
-
     }
 
     return (

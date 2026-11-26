@@ -1,4 +1,3 @@
-import "./cursos.css";
 import { BadgeCheck, CirclePlus, Info } from "lucide-react";
 import { Link } from "react-router";
 
