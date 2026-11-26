@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { UsuarioService } from "../../service";
 
 /**
@@ -9,7 +9,7 @@ export function ExclusiveLayout({ role }) {
 
     const usuarioLogado = usuarioService.findById(usuarioService.getUsuarioLogado()?.id);
 
-    if(usuarioLogado && usuarioLogado.role.toUpperCase()===role.toUpperCase()) {
+    if(usuarioLogado && usuarioLogado.tipoUsuario.toUpperCase()===role.toUpperCase()) {
         return <Outlet />;
     } else {
         return <Navigate to="/login" replace={true} />

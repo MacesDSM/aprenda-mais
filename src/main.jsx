@@ -3,11 +3,10 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router'
-import { Cursos, Home, Login, Perfil, Sobre, Cadastro } from './pages'
+import { Cursos, Home, Login, Perfil, Sobre, Cadastro, Autor, Administrador } from './pages'
 import { mock } from './service/LoadMock.mjs'
 import { UsuarioService } from './service'
-import Administrador from './pages/administrador/adiminstrador'
-import { ExclusiveLayout, PrivateLayout, PublicLayout } from './components/layout'
+import { ExclusiveLayout, PublicLayout } from './components/layout'
 import { tipoUsuario } from './service/TipoUsuario.mjs'
 
 // Usar para testar c/ dados falsos
@@ -32,9 +31,14 @@ createRoot(document.getElementById('root')).render(
           <Route path='cadastro' element={<Cadastro />}/>
         </Route>
 
-        {/* Rotas exclusivamente para usuários logados */}
-        <Route element={<PrivateLayout />}>
+        {/* Rotas exclusivamente para estudantes logados */}
+        <Route element={<ExclusiveLayout role={tipoUsuario.estudante} />}>
           <Route path='perfil' element={<Perfil />}/>
+        </Route>
+
+        {/* Rotas exclusivamente para autores logados */}
+        <Route element={<ExclusiveLayout role={tipoUsuario.autor} />}>
+          <Route path='autor' element={<Autor />}/>
         </Route>
 
         {/* Rotas exclusivamente para administradores */}

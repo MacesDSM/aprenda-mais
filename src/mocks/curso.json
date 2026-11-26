@@ -10,6 +10,9 @@
         "descricao": "Programação, dados e novas tecnologias para o futuro.",
         "nomeIcone": "square-terminal",
         "cor": "blue"
+    },
+    "autor": {
+      "nome": "GOV.BR"
     }
   },
   {
@@ -23,6 +26,9 @@
         "descricao": "Oportunidades e formação para transformar o setor público.",
         "nomeIcone": "landmark",
         "cor": "green"
+    },
+    "autor": {
+      "nome": "GOV.BR"
     }
   },
   {
@@ -36,6 +42,9 @@
         "descricao": "Aprenda a cuidar do seu dinheiro e planejar seus sonhos.",
         "nomeIcone": "wallet-cards",
         "cor": "orange"
+    },
+    "autor": {
+      "nome": "Sebrae"
     }
   },
   {
@@ -49,6 +58,9 @@
         "descricao": "Programação, dados e novas tecnologias para o futuro.",
         "nomeIcone": "square-terminal",
         "cor": "blue"
+    },
+    "autor": {
+      "nome": "GOV.BR"
     }
   },
   {
@@ -56,7 +68,10 @@
     "titulo": "Inglês para o Ambiente de Trabalho",
     "descricao": "Pratique vocabulário e situações comuns da comunicação profissional em inglês.",
     "link": "https://www.escolavirtual.gov.br/",
-    "duracao": "20 horas"
+    "duracao": "20 horas",
+    "autor": {
+      "nome": "GOV.BR"
+    }
   },
   {
     "id": 6,
@@ -69,6 +84,9 @@
         "descricao": "Programação, dados e novas tecnologias para o futuro.",
         "nomeIcone": "square-terminal",
         "cor": "blue"
+    },
+    "autor": {
+      "nome": "GOV.BR"
     }
   },
   {
@@ -82,6 +100,9 @@
         "descricao": "Aprenda a cuidar do seu dinheiro e planejar seus sonhos.",
         "nomeIcone": "wallet-cards",
         "cor": "orange"
+    },
+    "autor": {
+      "nome": "Sebrae"
     }
   },
   {
@@ -95,6 +116,9 @@
         "descricao": "Programação, dados e novas tecnologias para o futuro.",
         "nomeIcone": "square-terminal",
         "cor": "blue"
+    },
+    "autor": {
+      "nome": "GOV.BR"
     }
   }
 ]

@@ -5,6 +5,7 @@ import categoriaCursoMock from "../mocks/categoria-curso.json" with { type: 'jso
 import { UsuarioService } from "./UsuarioService.mjs";
 import { CursoService } from "./CursoService.mjs";
 import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
+import { AdminService } from "./AdminService.mjs";
 
 
 /**
@@ -12,6 +13,8 @@ import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
  */
 export function mock() {
     localStorage.clear();
+    
+    new AdminService();
     const categoriaCursoService = new CategoriaCursoService();
     const usuarioService = new UsuarioService();
     const cursoService = new CursoService();
@@ -19,9 +22,6 @@ export function mock() {
     estudanteMock.forEach(est=>usuarioService.save(est));
     autorMock.forEach(au=>usuarioService.save(au));
     cursoMock.forEach(c=>cursoService.save(c));
-    categoriaCursoMock.forEach(cc=>{
-        console.log("Categoria curso mock", cc);
-        categoriaCursoService.save(cc);
-    });
+    categoriaCursoMock.forEach(cc=>categoriaCursoService.save(cc));
 
 }

@@ -2,7 +2,7 @@ import { AutorService } from "./AutorService.mjs";
 import { BaseService } from "./BaseService.mjs";
 import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
 import { EstudanteService } from "./EstudanteService.mjs";
-import { tipoUsuarioRegExp } from "./TipoUsuario.mjs";
+import { tipoUsuario, tipoUsuarioRegExp } from "./TipoUsuario.mjs";
 
 /**
  * Classe que traz os comandos de perssistência de dados do usuário.
@@ -69,8 +69,9 @@ export class UsuarioService extends BaseService {
         
         if(usuario) {
             this.#executarPorTipoUsuario(usuario.tipoUsuario.toUpperCase(), [
-                {tipoUsuario: "AUTOR", callback:()=>usuarioFinal = this.autorService.findById(id)},
-                {tipoUsuario: "ESTUDANTE", callback:()=>usuarioFinal = this.estudanteService.findById(id)}
+                {tipoUsuario: tipoUsuario.autor, callback:()=>usuarioFinal = this.autorService.findById(id)},
+                {tipoUsuario: tipoUsuario.estudante, callback:()=>usuarioFinal = this.estudanteService.findById(id)},
+                {tipoUsuario: tipoUsuario.admin, callback:()=>usuarioFinal = usuario}
             ]);
         }
 
@@ -101,8 +102,9 @@ export class UsuarioService extends BaseService {
 
         let usuarioFinal;
         this.#executarPorTipoUsuario(request.tipoUsuario.toUpperCase(), [
-            {tipoUsuario: "ESTUDANTE", callback: ()=>usuarioFinal = this.estudanteService.save(usuarioSalvo)},
-            {tipoUsuario: "AUTOR", callback: ()=>usuarioFinal = this.autorService.save(usuarioSalvo)},
+            {tipoUsuario: tipoUsuario.admin, callback: ()=>{}},
+            {tipoUsuario: tipoUsuario.estudante, callback: ()=>usuarioFinal = this.estudanteService.save(usuarioSalvo)},
+            {tipoUsuario: tipoUsuario.autor, callback: ()=>usuarioFinal = this.autorService.save(usuarioSalvo)},
         ]);
 
         return usuarioFinal || null;
@@ -112,7 +114,7 @@ export class UsuarioService extends BaseService {
     /**
      * Função que compara um tipo de usuário no parâmetro e, dada uma ação correspondente no
      * segundo parâmentro, ele executa uma callback.
-     * @param {string} tipoUsuario 
+     * @param {string} tipoRecebido 
      * @param {[{tipoUsuario: string, callback: ()=>void}]} listaAcoes Um array com um objeto que lista, o valor correspondente com o tipoUsuario e em
      *  seguida uma callback para se excecutada.
      * 
@@ -126,11 +128,18 @@ export class UsuarioService extends BaseService {
      * ]);
         ```
      */
-    #executarPorTipoUsuario(tipoUsuario, listaAcoes) {
-        listaAcoes = listaAcoes.filter(l=>l.tipoUsuario.toUpperCase() === tipoUsuario.toUpperCase());
-        if(listaAcoes.length < 1) {
-            throw new Error("Nenhum valor correspondente na lista de ações");
-        }
-        listaAcoes[0].callback();
+    #executarPorTipoUsuario(tipoRecebido, listaAcoes) {
+
+    // O .find() para a busca assim que encontra o primeiro resultado válido
+    const acaoEncontrada = listaAcoes.find(
+        acao => acao.tipoUsuario?.toUpperCase() === tipoRecebido.toUpperCase()
+    );
+
+    if (!acaoEncontrada) {
+        throw new Error(`Nenhum valor correspondente para o tipo: ${tipoRecebido}`);
     }
+
+    acaoEncontrada.callback();
+}
+
 }

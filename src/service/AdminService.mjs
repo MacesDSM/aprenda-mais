@@ -4,28 +4,32 @@ import { CategoriaCursoService } from "./CategoriaCursoService.mjs";
 import { CursoService } from "./CursoService.mjs";
 import { statusAutorRegExp } from "./StatusAutor.mjs";
 import { statusCursoRegExp } from "./StatusCurso.mjs";
+import { tipoUsuario } from "./TipoUsuario.mjs";
+import { UsuarioService } from "./UsuarioService.mjs";
+
+const usuarioService = new UsuarioService();
 
 export class AdminService extends BaseService {
     constructor() {
         super("admin");
-        this.bootstrap();
         this.autorService = new AutorService();
         this.cursoService = new CursoService();
         this.categoriaCursoService = new CategoriaCursoService();
+        
+        this.bootstrap();
     }
-
-    
-
     /**
      * Método que cria o admin caso o sistema não tenha o iniciado ainda.
      */
     bootstrap() {
         if(this.count() < 1) {
-            this.save({
+            const admin = this.save({
                 nome: "Admin",
                 email: "admin@email.com",
                 senha: "123456"
             });
+            admin.tipoUsuario = tipoUsuario.admin;
+            usuarioService.save(admin);
         }
     }
 
