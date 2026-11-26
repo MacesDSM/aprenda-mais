@@ -64,7 +64,9 @@ export class BaseService {
         
         const id = listaAtual.length < 1 ? 1 : listaAtual[listaAtual.length - 1].id + 1;
         
-        const novoItem = { ...request, id };
+        const dataCriacao = new Date();
+
+        const novoItem = { ...request, id, dataCriacao };
         listaAtual.push(novoItem);
         
         localStorage.setItem(this.key, this.objectToJson(listaAtual));

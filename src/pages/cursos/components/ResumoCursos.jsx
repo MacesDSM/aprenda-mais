@@ -21,10 +21,6 @@ export function ResumoCursos() {
                 <Info size={13} aria-hidden="true" />
                 Sobre o Projeto & Desenvolvedores
               </Link>
-              <Link to="/indicar" className="curso-botao-indicar">
-                <CirclePlus size={14} aria-hidden="true" />
-                Adicionar Novo Curso
-              </Link>
             </div>
           </div>
         </section>

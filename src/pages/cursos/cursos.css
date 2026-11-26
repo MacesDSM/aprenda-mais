@@ -262,7 +262,7 @@ por isso segui fazendo da maneira que sei e me sinto mais segura. */
 
 .indicacao-campos { display: grid; gap: 5px; }
 
-.pagina-cursos .indicacao-form { display: grid; gap: 0; padding: 0; }
+.pagina-cursos .indicacao-form { display: grid; gap: 0.5rem; padding: 0; }
 
 .indicacao-campo { display: grid; min-width: 0; gap: 4px; }
 
@@ -281,7 +281,11 @@ por isso segui fazendo da maneira que sei e me sinto mais segura. */
 
 .indicacao-link .indicacao-input { height: 100%; padding-left: 0; background: transparent; border: 0; }
 
-.indicacao-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.indicacao-linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
 
 .botao-enviar-indicacao { display: flex; min-height: 31px; align-items: center; justify-content: center;
   gap: 6px; margin-top: 8px; color: #fff !important; background: var(--cursos-azul); border-radius: 6px;
