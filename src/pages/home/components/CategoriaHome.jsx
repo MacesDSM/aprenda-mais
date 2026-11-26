@@ -1,9 +1,8 @@
 import { ChevronRight } from "lucide-react";
 import { CategoriaCursoService } from "../../../service"
-import "../home.css";
 import { DynamicIcon } from "lucide-react/dynamic";
-const categoriaService = new CategoriaCursoService();
 
+const categoriaService = new CategoriaCursoService();
 
 export function CategoriaHome() {
 

@@ -1,5 +1,4 @@
 import { ArrowRight, Info, Search } from "lucide-react";
-import "./home.css";
 
 const popularSearches = ["Tecnologia", "Finanças", "Empreendedorismo"]
 
