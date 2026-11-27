@@ -1,21 +1,22 @@
 import { CursoSpecifications } from '../../service/specifications';
+import { AutorCursoItem, CreateCursoModal } from './components';
 import { useAuthContext, useCursoContext } from '../../context';
-import { AutorService, statusCurso } from '../../service';
+import { statusCurso } from '../../service';
 import { Footer, Navbar } from '../../components';
 import { useState } from 'react';
 import './autores.css';
-import { AutorCursoItem } from './components';
+import { CirclePlus } from 'lucide-react';
 
-const autorService = new AutorService();
 
 export function Autor() {
   const [filtroAtivo, setFiltroAtivo] = useState('todos');
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+
   const { cursos } = useCursoContext();
   const { usuario } = useAuthContext();
-  const autor = {...usuario, ...autorService.findById(usuario.id)};
   
   const cursosProprios = new CursoSpecifications(cursos)
-  .specAutorId(autor.id)
+  .specAutorId(usuario.id)
   .build();
 
   const cursosPendentes = new CursoSpecifications(cursosProprios)
@@ -38,7 +39,12 @@ export function Autor() {
       <Navbar />
       <div className="autores-container">
         <div className="autores-header">
-          <h1>Meus cursos</h1>
+          <div className="">
+            <h1>Meus cursos</h1>
+            <button onClick={()=>setIsCreateDialogOpen(true)} className="button-icon button-primary">
+              <CirclePlus size={20} />
+            </button>
+          </div>
           <p className="subtitulo">Gerencie seus conteúdos e compartilhe o que você sabe.</p>
         </div>
 
@@ -66,16 +72,16 @@ export function Autor() {
               Todos
             </button>
             <button
-            className={`botao-filtro ${filtroAtivo === 'pendentes' ? 'ativo' : ''}`}
+            className={`botao-filtro ${filtroAtivo === statusCurso.pendente ? 'ativo' : ''}`}
             onClick={() => setFiltroAtivo(statusCurso.pendente)}>
               Pendentes
             </button>
             <button
-            className={`botao-filtro ${filtroAtivo === 'aprovados' ? 'ativo' : ''}`} onClick={() => setFiltroAtivo(statusCurso.aprovado)}>
+            className={`botao-filtro ${filtroAtivo === statusCurso.aprovado ? 'ativo' : ''}`} onClick={() => setFiltroAtivo(statusCurso.aprovado)}>
               Aprovados
             </button>
             <button
-            className={`botao-filtro ${filtroAtivo === 'reprovados' ? 'ativo' : ''}`}
+            className={`botao-filtro ${filtroAtivo === statusCurso.reprovado ? 'ativo' : ''}`}
             onClick={() => setFiltroAtivo(statusCurso.reprovado)}>
               Reprovados
             </button>
@@ -88,7 +94,11 @@ export function Autor() {
           ))}
           {cursosFiltrados.length < 1 && <p className="secondary-500 text-sm">Nenhum curso encontrado.</p>}
         </div>
-
+          <CreateCursoModal
+          title="Criar Novo Curso"
+          isOpen={isCreateDialogOpen}
+          onClose={()=>setIsCreateDialogOpen(false)}
+          />
       </div>
       <Footer />
     </section>

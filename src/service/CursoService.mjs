@@ -13,6 +13,6 @@ export class CursoService extends BaseService {
 
         request.status = "pendente";
     
-        super.save(request);
+        return super.save(request);
     }
 }

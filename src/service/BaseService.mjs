@@ -119,6 +119,7 @@ export class BaseService {
 
         if (novaLista.length < tamanhoOriginal) {
             localStorage.setItem(this.key, this.objectToJson(novaLista)); // Correção: objectToJson substituindo jsonToObject
+            return true;
         } else {
             throw new Error(`Nenhum registro com o ID ${id} foi encontrado.`);
         }
