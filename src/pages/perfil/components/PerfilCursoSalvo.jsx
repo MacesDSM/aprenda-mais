@@ -10,9 +10,11 @@ export function PerfilCursoSalvo({curso}) {
     return (
         <article className="perfil-cartao-curso perfil-cartao-curso-andamento">
             <div className="perfil-cabecalho-curso">
-                <span className="perfil-categoria-curso">
-                    {cursoEncontrado.categoria.nome}
-                </span>
+                {cursoEncontrado.categoria && (
+                    <span className="perfil-categoria-curso">
+                        {cursoEncontrado.categoria.nome}
+                    </span>
+                )}
                 <span className="perfil-plataforma-curso">
                     {cursoEncontrado.autor.nome}
                 </span>

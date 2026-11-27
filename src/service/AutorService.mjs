@@ -1,5 +1,6 @@
 import { BaseService } from "./BaseService.mjs";
 import { CursoService } from "./CursoService.mjs";
+import { UsuarioService } from "./UsuarioService.mjs";
 
 export class AutorService extends BaseService {
     constructor() {
@@ -88,7 +89,8 @@ export class AutorService extends BaseService {
             throw new Error("Autor não autênticado");
         }
 
-        const cursoBuscado = autor.cursos.find(c=>c.id === idCurso);
+        const cursoBuscado = this.cursoService.findAll()
+            .find(c=>c.id === idCurso);
 
         return cursoBuscado ? true : false;
     }

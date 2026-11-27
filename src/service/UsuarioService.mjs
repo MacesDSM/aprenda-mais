@@ -52,7 +52,7 @@ export class UsuarioService extends BaseService {
      */
     findByEmail(email) {
         const listaUsuarios = this.findAll();
-        const usuario = listaUsuarios.filter(u=>u.email===email)[0] ?? null;
+        const usuario = listaUsuarios.find(u=>u.email===email) ?? null;
         return this.findById(usuario.id);
     }
 
@@ -130,16 +130,16 @@ export class UsuarioService extends BaseService {
      */
     #executarPorTipoUsuario(tipoRecebido, listaAcoes) {
 
-    // O .find() para a busca assim que encontra o primeiro resultado válido
-    const acaoEncontrada = listaAcoes.find(
-        acao => acao.tipoUsuario?.toUpperCase() === tipoRecebido.toUpperCase()
-    );
+        // O .find() para a busca assim que encontra o primeiro resultado válido
+        const acaoEncontrada = listaAcoes.find(
+            acao => acao.tipoUsuario?.toUpperCase() === tipoRecebido.toUpperCase()
+        );
 
-    if (!acaoEncontrada) {
-        throw new Error(`Nenhum valor correspondente para o tipo: ${tipoRecebido}`);
+        if (!acaoEncontrada) {
+            throw new Error(`Nenhum valor correspondente para o tipo: ${tipoRecebido}`);
+        }
+
+        acaoEncontrada.callback();
     }
-
-    acaoEncontrada.callback();
-}
 
 }

@@ -3,20 +3,39 @@ import { useCursoContext } from "../../../../context";
 import { CursoTableItem } from "./CursoTableItem";
 import { statusCurso } from "../../../../service"
 import { useState } from "react";
+import { useSearchParams } from "react-router";
+
+/**
+ * Ordena os cursos com base na ordem especificada.
+ * Função auxiliar para atualizar os parâmetros de pesquisa e refletir a ordenação desejada, usando o hook `setSearchParams`
+ * para atualizar os parâmetros de pesquisa na URL.
+ * @param {"desc" | "asc"} ordem 
+ * @param {Function} setOrdem 
+ */
+function ordenarCursos(ordem, setOrdem) {
+    setOrdem(prev=>{
+        prev.set("ordem", ordem);
+        return prev;
+    });
+}
 
 export function CursoTable() {
     const { cursos } = useCursoContext();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [abaAtiva, setAbaAtiva] = useState('todos');
     
     
     const cursosPendentes = new CursoSpecifications(cursos)
+        .specOrdemByData(searchParams.get("ordem") || "asc")
         .specStatusCurso(statusCurso.pendente)
         .build();
     
     const cursosAprovados = new CursoSpecifications(cursos)
+        .specOrdemByData(searchParams.get("ordem") || "asc")
         .specStatusCurso(statusCurso.aprovado)
         .build();
     const cursosReprovados = new CursoSpecifications(cursos)
+        .specOrdemByData(searchParams.get("ordem") || "asc")
         .specStatusCurso(statusCurso.reprovado)
         .build();
     
@@ -53,8 +72,11 @@ export function CursoTable() {
 
             <div className="filter-row">
                 <div className="filter-controls">
-                    <button className="filter-btn">Filtrar ▼</button>
-                    <button className="filter-btn">Mais recentes ▼</button>
+                    <label className="font-normal" htmlFor="filtro">Filtrar por:</label>
+                    <select value={searchParams.get("ordem") || "asc"} onChange={(e)=>ordenarCursos(e.target.value, setSearchParams)} id="filtro" defaultValue="asc" className="input">
+                        <option value="asc">Mais recentes</option>
+                        <option value="desc">Mais antigos</option>
+                    </select>
                 </div>
             </div>
 

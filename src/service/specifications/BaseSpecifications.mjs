@@ -4,6 +4,10 @@
  * @description Deve-se usar o método builder e a partir dele compor os filtros desejados.
  */
 export class BaseSpecifications {
+    /**
+     * 
+     * @param {Array} lista 
+     */
     constructor(lista) {
         this.lista = lista;
     }
@@ -15,11 +19,11 @@ export class BaseSpecifications {
      * A lista de item deve conter o atributo `dataCriacao`.
      */
     specOrdemByData(ordem) {
-        if(ordem === "desc") {
-            this.lista = this.lista.sort((a, b) => b.dataCriacao - a.dataCriacao);
+        if(ordem == "desc") {
+            this.lista.sort((a, b) => a.id - b.id);
+        } else {
+            this.lista.sort((a, b) => b.id - a.id);
         }
-        this.lista = this.lista.sort((a, b) => a.dataCriacao - b.dataCriacao);
-
         return this;
     }
 

@@ -1,15 +1,36 @@
 import { BadgeCheck, CirclePlus, Globe, Send } from "lucide-react";
-import { CategoriaCursoService } from "../../../service";
+import { CategoriaCursoService, CursoService, UsuarioService } from "../../../service";
+import { useCursoContext } from "../../../context";
 
 const categoriaCursoService = new CategoriaCursoService();
+const usuarioService = new UsuarioService();
+const cursoService = new CursoService();
 
 export function IndicarCurso() {
 
-    const categorias = categoriaCursoService.findAll();
+  const categorias = categoriaCursoService.findAll();
+  const { setCursos } = useCursoContext();
 
-    function submit(event) {
-        event.preventDefault();
-    }
+  function submit(event) {
+      event.preventDefault();
+      const formData = cursoService.getFormObject(event);
+
+      formData.categoria = {id: Number(formData.categoria)};
+
+      formData.autor = {
+        nome: `${formData.autor} (Indicado)`,
+        id: usuarioService.findByEmail("indicado@email.com").id
+      };
+
+      try {
+          cursoService.save(formData);
+          setCursos(cursoService.findAll());
+          window.alert("Curso cadastrado com sucesso!");
+      } catch (error) {
+          window.alert(error.message);
+      }
+      event.currentTarget.reset();
+  }
 
     return (
         <aside className="cursos-coluna-lateral">
@@ -44,19 +65,25 @@ export function IndicarCurso() {
                       required
                     />
                   </div>
-                  <label className="indicacao-rotulo" htmlFor="indicacao-link">
-                    Link Oficial Direto
-                  </label>
-                  <div className="input-group">
-                    <Globe className="icon" size={20} aria-hidden="true" />
-                    <input
-                      className="input"
-                      id="indicacao-link"
-                      name="link"
-                      type="url"
-                      placeholder="https://www.gov.br/..."
-                      required
-                    />
+                  <div className="indicacao-campo">
+                    <label className="indicacao-rotulo" htmlFor="descricao">Descrição do curso</label>
+                    <textarea maxLength={600} placeholder="Descrição do curso" name="descricao" className="input"></textarea>
+                  </div>
+                  <div className="indicacao-campo">
+                    <label className="indicacao-rotulo" htmlFor="indicacao-link">
+                      Link Oficial Direto
+                    </label>
+                    <div className="input-group">
+                      <Globe className="icon" size={20} aria-hidden="true" />
+                      <input
+                        className="input"
+                        id="indicacao-link"
+                        name="link"
+                        type="url"
+                        placeholder="https://www.gov.br/..."
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="indicacao-linha">
                     <div className="indicacao-campo">
@@ -69,7 +96,7 @@ export function IndicarCurso() {
                       <input
                         className="input"
                         id="indicacao-instituicao"
-                        name="instituicao"
+                        name="autor"
                         type="text"
                         placeholder="Ex: Enap, USP"
                         required

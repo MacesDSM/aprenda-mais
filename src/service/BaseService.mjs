@@ -27,7 +27,7 @@ export class BaseService {
 
     /**
      * Busca na base de dados os registros cadastrados no sistema.
-     * @returns Uma lista com os registros cadastrados.
+     * @returns {Array} Uma lista com os registros cadastrados.
      */
     findAll() {
         const dados = localStorage.getItem(this.key);

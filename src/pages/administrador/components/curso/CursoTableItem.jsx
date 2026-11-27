@@ -1,13 +1,16 @@
 import { useCursoContext } from "../../../../context";
-import { AdminService, CursoService, statusCurso, validateStatusCurso } from "../../../../service";
+import { AdminService, CursoService, statusCurso, UsuarioService, validateStatusCurso } from "../../../../service";
 
 const adminService = new AdminService();
 const cursoService = new CursoService();
 
+const usuarioService = new UsuarioService();
 
 export function CursoTableItem({ curso }) {
 
     const { setCursos } = useCursoContext();
+
+    const autor = usuarioService.findById(curso.autor.id);
 
     function alteraStatusCurso(curso, status) {
         const confirmado = window.confirm(`Tem certeza que deseja alterar o status do curso "${curso.titulo} para ${status}"?`);
@@ -21,7 +24,7 @@ export function CursoTableItem({ curso }) {
     return (
         <div className="table-row">
             <span className="course-name">{curso.titulo}</span>
-            <span className="course-instructor">{curso.autor ? curso.autor.nome : 'Não especificado'}</span>
+            <span className="course-instructor">{autor ? autor.nome : 'Não especificado'}</span>
             <div>
                 <span className={`course-status status-${curso.status}`}>{curso.status.toUpperCase(0)}</span>
             </div>

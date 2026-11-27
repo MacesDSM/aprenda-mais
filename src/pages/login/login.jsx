@@ -26,13 +26,19 @@ export function Login() {
         const dados = service.getFormObject(event);
 
         const logado = login(dados);
-        if(logado) {
-            window.alert(`Conta logada com sucesso!`);
-            navigate("/perfil");
+        
+        try {
+            if(logado) {
+                window.alert(`Conta logada com sucesso!`);
+                navigate("/perfil");
             
-        } else {
-            window.alert("Login ou senha inválidos")
+            } else {
+                window.alert("Login ou senha inválidos")
+            }
+        } catch (error) {
+            window.alert(error.message);
         }
+        event.currentTarget.reset();
     }
 
     return (
