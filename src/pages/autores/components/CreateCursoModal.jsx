@@ -16,6 +16,7 @@ export function CreateCursoModal({ isOpen, onClose }) {
         event.preventDefault();
         const formData = cursoService.getFormObject(event);
         formData.autor = { id: usuario.id, nome: usuario.nome };
+        formData.categoria = { id: Number(formData.categoria) };
 
         try {
             if(cursoService.save(formData)) {
