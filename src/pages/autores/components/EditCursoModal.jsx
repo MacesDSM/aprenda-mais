@@ -13,6 +13,7 @@ export function EditCursoModal({ isOpen, onClose, curso }) {
     function edit(event) {
         event.preventDefault();
         const formData = cursoService.getFormObject(event);
+        formData.categoria = { id: Number(formData.categoria) };
 
         try {
             if (cursoService.update(curso.id, formData)) {

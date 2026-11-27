@@ -1,16 +1,10 @@
 [
   {
-    "titulo": "Teste de curso",
-    "autor": {
-      "id": 3
-    }
-  },
-  {
     
     "id": 1,
     "titulo": "Introdução à Ciência de Dados e IA no Setor Público",
     "descricao": "Apresenta os fundamentos essenciais de análise preditiva, princípios éticos para uso de inteligência artificial governamental e repositórios abertos de dados públicos.",
-    "link": "https://www.gov.br/",
+    "link": "https://www.gov.br/governodigital/pt-br/infraestrutura-nacional-de-dados/inteligencia-artificial/capacitacoes",
     "duracao": "40 horas",
     "categoria": {
         "id": 1,
@@ -27,7 +21,7 @@
     "id": 2,
     "titulo": "Lei Geral de Proteção de Dados (LGPD) e Direitos do Cidadão",
     "descricao": "Explica os direitos fundamentais de privacidade e autodeterminação informativa no ambiente digital, requisitos para tratamento de dados e diretrizes de conformidade jurídica.",
-    "link": "https://www.gov.br/",
+    "link": "https://www.escolavirtual.gov.br/cursos/fundamentos-da-lei-geral-de-protecao-de-dados-lgpd",
     "duracao": "25 horas",
     "categoria": {
       "id": 3,
@@ -44,7 +38,7 @@
     "id": 3,
     "titulo": "Gestão Financeira Descomplicada para Novos Negócios",
     "descricao": "Capacitação prática orientada a controle de fluxo de caixa, precificação com margem real, divisão de despesas de pessoa física e jurídica e regularização fiscal descomplicada.",
-    "link": "https://sebrae.com.br/",
+    "link": "https://sp.loja.sebrae.com.br/gest-o-financeira-1-372000026927",
     "duracao": "15 horas",
     "categoria": {
       "id": 2,

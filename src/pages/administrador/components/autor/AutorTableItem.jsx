@@ -1,11 +1,9 @@
 import { useAutorContext } from "../../../../context";
-import { AdminService, AutorService, statusAutor, validateStatusAutor } from "../../../../service";
+import { AdminService, statusAutor, validateStatusAutor } from "../../../../service";
 
-const autorService = new AutorService();
 const adminService = new AdminService();
 
 export function AutorTableItem({ autor }) {
-    console.log("AutorTableItem autor:", autor); // Adicione este log para depuração
     const { setAutores } = useAutorContext();
 
     function alterarStatusAutor(autor, status) {

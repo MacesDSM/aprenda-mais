@@ -74,7 +74,7 @@ export function AutorTable() {
             <div className="filter-row">
                 <div className="filter-controls">
                     <label className="font-normal" htmlFor="filtro">Filtrar por:</label>
-                    <select value={searchParams.get("ordem") || "asc"} onChange={(e)=>ordenarAutores(e.target.value, setSearchParams)} id="filtro" defaultValue="asc" className="input">
+                    <select value={searchParams.get("ordem") || "asc"} onChange={(e)=>ordenarAutores(e.target.value, setSearchParams)} id="filtro" className="input">
                         <option value="asc">Mais recentes</option>
                         <option value="desc">Mais antigos</option>
                     </select>

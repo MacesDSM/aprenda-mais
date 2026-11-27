@@ -70,6 +70,17 @@ export function IndicarCurso() {
                     <textarea maxLength={600} placeholder="Descrição do curso" name="descricao" className="input"></textarea>
                   </div>
                   <div className="indicacao-campo">
+                    <label className="indicacao-rotulo" htmlFor="duracao">Duração</label>
+                    <input
+                      className="input"
+                      id="duracao"
+                      name="duracao"
+                      type="text"
+                      placeholder="Ex: 15 horas"
+                      required
+                    />
+                  </div>
+                  <div className="indicacao-campo">
                     <label className="indicacao-rotulo" htmlFor="indicacao-link">
                       Link Oficial Direto
                     </label>
