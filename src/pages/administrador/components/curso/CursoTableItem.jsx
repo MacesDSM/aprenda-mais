@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useCursoContext } from "../../../../context";
 import { AdminService, CursoService, statusCurso, validateStatusCurso } from "../../../../service";
 
