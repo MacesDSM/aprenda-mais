@@ -4,11 +4,13 @@ import { Eye, EyeOff, LockKeyhole, IdCard } from "lucide-react";
 import styles from "./login.module.css";
 import { useNavigate } from "react-router";
 import { Navbar } from "../../components";
+import { useAuthContext } from "../../context";
 
 
 
 export function Login() {
     const [verSenha, setVerSenha] = useState(false);
+    const { login } = useAuthContext();
 
     const navigate = useNavigate();
 
@@ -23,7 +25,7 @@ export function Login() {
 
         const dados = service.getFormObject(event);
 
-        const logado = service.logar(dados);
+        const logado = login(dados);
         if(logado) {
             window.alert(`Conta logada com sucesso!`);
             navigate("/perfil");

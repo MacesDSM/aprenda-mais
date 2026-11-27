@@ -41,6 +41,13 @@ export class CursoSpecifications extends BaseSpecifications {
         }
         return this;
     }
+
+    specAutorId(autorId) {
+        if(autorId) {
+            this.lista = this.lista.filter(c => c.autor && c.autor.id == autorId);
+        }
+        return this;
+    }
 }
 
 

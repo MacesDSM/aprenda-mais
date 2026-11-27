@@ -3,20 +3,20 @@ import { Link, useNavigate } from "react-router";
 import "./style.css";
 import { UsuarioService } from "../../service";
 import { Logo } from "../Logo/Logo";
+import { useAuthContext } from "../../context";
 
 const usuarioService = new UsuarioService();
 
 
-export function Navbar({ applySearch, query, setQuery }) {
-  
-  const navigate = useNavigate();
-
+export function Navbar({ applySearch, query, setQuery }) {  
   const usuarioLogado = usuarioService.findById(usuarioService.getUsuarioLogado()?.id);
+  const navigate = useNavigate();
+  const { logout: authLogout } = useAuthContext();
   
   function logout() {
     const confirmacao = window.confirm("Deseja realmente sair da sua conta?");
     if(confirmacao) {
-      usuarioService.logout();
+      authLogout();
       navigate("/home");
     }
   }

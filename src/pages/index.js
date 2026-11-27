@@ -6,3 +6,5 @@ export * from "./home/home";
 export * from "./cadastro/cadastro"
 export * from "./autores/autores";
 export * from "./administrador/adiminstrador";
+export * from "./administrador/components/autor/AutorDashboard";
+export * from "./administrador/components/curso/CursoDashboard";
