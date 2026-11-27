@@ -245,6 +245,13 @@ body {
   align-items: center;
   font-size: 14px;
 }
+.table-fallback {
+  display: flex;
+  justify-content: center;
+  color: var(--secondary-color-500);
+  align-items: center;
+  padding: 1rem;
+}
 
 .table-row:last-child {
   border-bottom: none;
@@ -260,9 +267,7 @@ body {
 }
 
 .course-status {
-  display: inline-block;
-  padding: 3px 0.5rem;
-  text-align: center;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
@@ -278,10 +283,14 @@ body {
   color: #166534;
 }
 
+.status-reprovado {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
 .course-date {
   color: #64748b;
   font-size: 13px;
-  text-align: center;
 }
 
 .action-btn {
@@ -301,6 +310,15 @@ body {
 
 .btn-aprovar:hover {
   background: #dbeafe;
+}
+
+.btn-reprovar {
+  background: #fee2e2;
+  color: #b91c1c;
+  margin-right: 6px;
+}
+.btn-reprovar:hover {
+  background: #e6cccc;
 }
 
 .btn-ver {

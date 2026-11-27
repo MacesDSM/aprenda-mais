@@ -31,6 +31,14 @@
     background-color: var(--teriary-600);
 }
 
+.button-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.button-danger:hover {
+  background: #e6cccc;
+}
+
 .button-icon {
     aspect-ratio: 1;
     padding: 0.5rem;
@@ -47,6 +55,15 @@
 }
 
 .button-icon-secondary:hover {
+    background-color: var(--secondary-600);
+}
+
+.button-secondary {
+    color: var(--secondary-color-500);
+    background-color: var(--secondary-500);
+}
+
+.button-secondary:hover {
     background-color: var(--secondary-600);
 }
 

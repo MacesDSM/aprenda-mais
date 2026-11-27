@@ -32,16 +32,16 @@ export class UsuarioService extends BaseService {
      *  senha: "senhaDoLogin123"
      * }
      * ```
-     * @returns Retorna `true` se o usuário foi autênticado com sucesso, caso contrário
-     * retorna `false`
+     * @returns Retorna o usuário autênticado se o login for bem-sucedido, caso contrário
+     * retorna `null`
      */
     logar(request) {
         const conta = this.findByEmail(request.email);
         if(conta && conta.senha === request.senha) {
             localStorage.setItem(this.authKey, this.objectToJson({id: conta.id}));
-            return true;
+            return conta;
         }
-        return false;
+        return null;
     }
 
     /**

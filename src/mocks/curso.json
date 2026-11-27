@@ -1,5 +1,12 @@
 [
   {
+    "titulo": "Teste de curso",
+    "autor": {
+      "id": 3
+    }
+  },
+  {
+    
     "id": 1,
     "titulo": "Introdução à Ciência de Dados e IA no Setor Público",
     "descricao": "Apresenta os fundamentos essenciais de análise preditiva, princípios éticos para uso de inteligência artificial governamental e repositórios abertos de dados públicos.",

@@ -183,7 +183,8 @@
 }
 
 .status-badge {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   font-size: 12px;
   font-weight: 600;
   padding: 2px 8px;
@@ -291,6 +292,13 @@
 .botao-pagina:hover:not(.ativo) {
   background-color: #f3f4f6;
 }
+
+.curso-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 
 @media (max-width: 768px) {
   .stats-grid {

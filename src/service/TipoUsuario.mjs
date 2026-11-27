@@ -5,3 +5,9 @@ export const tipoUsuario = {
 }
 
 export const tipoUsuarioRegExp = new RegExp(Object.values(tipoUsuario).join("|"), "i");
+
+export const validateTipoUsuario = {
+    estudante: /estudante/i,
+    autor: /autor/i,
+    admin: /admin/i
+}

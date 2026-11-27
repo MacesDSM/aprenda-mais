@@ -37,7 +37,7 @@ export class AdminService extends BaseService {
         const autor = this.autorService.findById(idAutor);
 
         if(statusAutorRegExp.test(status)) {
-            this.autorService.update(idAutor, {...autor, status: status});
+            return this.autorService.update(idAutor, {...autor, status: status});
         } else {
             throw new Error("Status inválido para o autor");
         }
@@ -47,7 +47,7 @@ export class AdminService extends BaseService {
         const curso = this.cursoService.findById(idCurso);
 
         if(statusCursoRegExp.test(status)) {
-            this.cursoService.update(idCurso, {...curso, status: status});
+            return this.cursoService.update(idCurso, {...curso, status: status});
         } else {
             throw new Error("Status inválido para o curso");
         }

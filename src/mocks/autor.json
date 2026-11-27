@@ -3,12 +3,6 @@
         "nome": "Autor A",
         "email": "autora@email.com",
         "senha": "123456",
-        "tipoUsuario": "autor",
-        "cursos": [
-            {
-                "titulo": "Teste de curso",
-                "id": 1
-            }
-        ]
+        "tipoUsuario": "autor"
     }
 ]

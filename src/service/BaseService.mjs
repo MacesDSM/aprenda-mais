@@ -77,6 +77,7 @@ export class BaseService {
      * Atualiza um registro da base de dados pelo seu ID
      * @param {number} id ID único do registro a ser modificado.
      * @param {*} request Novo objeto alterado.
+     * @returns Caso a alteração seja bem sucedida, retorna `true`, caso contrário, retorna `false`.
      * @throws Caso nenhum registro com o ID informado seja encontrado, uma exceção é
      * lançada.
      */
@@ -84,16 +85,20 @@ export class BaseService {
         const listaAtual = this.findAll();
         let encontrado = false;
 
+        let novoItem = null
+
         const novaLista = listaAtual.map(item => {
             if (item.id === Number(id)) {
                 encontrado = true;
-                return { ...item, ...request, id };
+                novoItem = { ...item, ...request, id };
+                return novoItem;
             }
             return item;
         });
 
         if (encontrado) {
             localStorage.setItem(this.key, this.objectToJson(novaLista));
+            return novoItem;
         } else {
             throw new Error(`Nenhum registro com o ID ${id} foi encontrado.`);
         }
