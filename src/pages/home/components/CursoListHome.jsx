@@ -1,14 +1,16 @@
 import { Link } from "react-router";
-import { ArrowRight, ArrowUpRight, BookOpen } from "lucide-react";
-import { CategoriaCursoService, CursoService } from "../../../service";
-
-const cursoService = new CursoService();
-const categoriaService = new CategoriaCursoService();
+import {  ArrowUpRight } from "lucide-react";
+import { CursoListItemHome } from "./CursoListItemHome";
+import { useCursoContext } from "../../../context";
+import { CursoSpecifications } from "../../../service/specifications/CursoSpecifications.mjs";
 
 
 export function CursoListHome(){
-  const cursos = cursoService.findAll();
-  const categorias = categoriaService.findAll();
+  const { cursos } = useCursoContext();
+
+  const cursosFiltrados = new CursoSpecifications(cursos)
+  .specLimit(6)
+  .build();
 
   return(
     <section className="courses-section content-width" id="cursos" aria-labelledby="courses-title">
@@ -22,51 +24,10 @@ export function CursoListHome(){
         <Link className="text-link" to="/cursos">Ver todos os cursos <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </header>
 
-      <nav className="filter-row" aria-label="Filtrar cursos por categoria">
-        {categorias.map((cat) => (
-          <button
-            type="button"
-            key={cat.id}
-            className={`filter-chip${cat === cat ? " filter-chip-active" : ""}`}
-          >
-            {cat.nome}
-          </button>
-        ))}
-        <p className="course-count" aria-live="polite">
-          {cursos.length} {cursos.length === 1 ? "curso" : "cursos"} em destaque
-        </p>
-      </nav>
-
-      {cursos.length > 0 ? (
-        <ul className="course-grid" aria-live="polite">
-          {cursos.map((c) => (
-            <li key={c.id}>
-              <article className="course-card">
-                <header className="course-card-top">
-                  
-                  {c.autor && (
-                    <>
-                      <figure className={`icon-badge provider-icon provider-${c.cor}`} aria-hidden="true">
-                        <BookOpen size={17} />
-                      </figure>
-                      <p className="course-provider">{c.autor.nome}</p>
-                    </>
-                  )}
-                </header>
-                <p className={`course-category category-label-${c.cor}`}>{c.category}</p>
-                <h3>{c.titulo}</h3>
-                {c.descricao && <p className="course-description">{c.descricao}</p>}
-                <footer className="course-meta">
-                  <p>{c.duracao}</p>
-                </footer>
-                <Link className="course-link" to="/cursos">Ver detalhes <ArrowRight size={15} aria-hidden="true" /></Link>
-              </article>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="empty-state" role="status">Nenhum curso encontrado. Tente outro termo ou categoria.</p>
-      )}
+      <div className="course-grid" aria-live="polite">
+        {cursosFiltrados.map(c=><CursoListItemHome key={c.id} curso={c} />)}
+      </div>
+      {cursos.length < 1 && <p className="empty-state" role="status">Nenhum curso encontrado. Tente outro termo ou categoria.</p>}
     </section>
   )
 }
