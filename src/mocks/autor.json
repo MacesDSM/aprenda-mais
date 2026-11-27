@@ -4,5 +4,23 @@
         "email": "autora@email.com",
         "senha": "123456",
         "tipoUsuario": "autor"
+    },
+    {
+        "nome": "GOV.br",
+        "email": "goveducacao@gov.com",
+        "senha": "123456",
+        "tipoUsuario": "autor"
+    },
+    {
+        "nome": "Sebrae",
+        "email": "sebrae@sebrae.com",
+        "senha": "123456",
+        "tipoUsuario": "autor"
+    },
+    {
+        "nome": "Indicado",
+        "email": "indicado@email.com",
+        "senha": "123456",
+        "tipoUsuario": "autor"
     }
 ]

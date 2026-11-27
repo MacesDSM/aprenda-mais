@@ -2,28 +2,38 @@ import { Eye, EyeOff, LockKeyhole, IdCard, User } from "lucide-react";
 import "./cadastro.css";
 import { useState } from "react";
 import { UsuarioService } from "../../service";
+import { useNavigate } from "react-router";
 
-function criarConta(e) {
+
+export function Cadastro() {
+    const [verSenha, setVerSenha] = useState(false);
+    const [verConfirmar, setConfirmar] = useState(false);
+    const navigate = useNavigate();
+
+    function toggleVerSenha() {
+        setVerSenha(prev=>!prev);
+    }
+    function toggleConfirmar() {
+        setConfirmar(prev=>!prev);
+    }
+
+    function criarConta(e) {
     e.preventDefault();
     const service = new UsuarioService();
 
     const dadosForm = service.getFormObject(e);
 
-    if(service.save(dadosForm)) {
-        alert("Cadastro concluido com sucesso!");
+    try {
+        if(service.save(dadosForm)) {
+            alert("Cadastro concluido com sucesso!");
+            navigate("/login");
     }
+    } catch (error) {
+        window.alert(error.message);
+    }
+    e.currentTarget.reset();
 }
 
-export function Cadastro() {
-    const [verSenha, setVerSenha] = useState(false);
-    const [verConfirmar, setConfirmar] = useState(false);
-
-    function toggleVerSenha() {
-        setVerSenha(prev=>!prev);
-    }
-        function toggleConfirmar() {
-        setConfirmar(prev=>!prev);
-    }
     
     return (
          <section className="main">

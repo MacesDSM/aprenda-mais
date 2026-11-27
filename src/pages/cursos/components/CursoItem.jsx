@@ -1,15 +1,22 @@
-import { BadgeCheck, Clock3, ExternalLink } from "lucide-react";
+import { Clock3, ExternalLink } from "lucide-react";
+import { UsuarioService } from "../../../service";
+
+const usuarioService = new UsuarioService();
 
 export function CursoItem({ curso }) {
+    const autor = usuarioService.findById(curso.autor.id);
+    const isIndicado = curso.autor.id === usuarioService.findByEmail("indicado@email.com")?.id;
+
     return (
-        <article
-            className={`cartao-curso`}
-            key={curso.id}
-            >
+        <article className={`cartao-curso`} key={curso.id}>
             <div className="curso-provedor">
                 <span>
                 <i aria-hidden="true" /> Plataforma Hospedeira:
-                {curso.autor && <strong>{curso.autor.nome}</strong>}
+                {isIndicado ? (
+                    <strong>{curso.autor.nome}</strong>
+                ) : (
+                    autor && <strong>{autor.nome}</strong>
+                )}
                 </span>
             </div>
             <h2>{curso.titulo}</h2>

@@ -20,7 +20,7 @@
         "cor": "blue"
     },
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   },
   {
@@ -37,7 +37,7 @@
       "cor": "green"
     },
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   },
   {
@@ -54,7 +54,7 @@
       "cor": "orange"
     },
     "autor": {
-      "nome": "Sebrae"
+      "id": 5
     }
   },
   {
@@ -71,7 +71,7 @@
       "cor": "blue"
     },
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   },
   {
@@ -81,7 +81,7 @@
     "link": "https://www.escolavirtual.gov.br/",
     "duracao": "20 horas",
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   },
   {
@@ -98,7 +98,7 @@
       "cor": "blue"
     },
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   },
   {
@@ -115,7 +115,7 @@
       "cor": "orange"
     },
     "autor": {
-      "nome": "Sebrae"
+      "id": 5
     }
   },
   {
@@ -132,7 +132,7 @@
       "cor": "blue"
     },
     "autor": {
-      "nome": "GOV.BR"
+      "id": 4
     }
   }
 ]

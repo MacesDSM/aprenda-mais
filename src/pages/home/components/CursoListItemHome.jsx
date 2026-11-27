@@ -2,14 +2,16 @@ import { ArrowRight, Bookmark, BookmarkCheck, BookOpen } from "lucide-react";
 import { useAuthContext, useCursoContext } from "../../../context";
 import { Link } from "react-router";
 import { validateTipoUsuario } from "../../../service/TipoUsuario.mjs";
-import { EstudanteService } from "../../../service";
+import { EstudanteService, UsuarioService } from "../../../service";
 import { useState } from "react";
 
 const estudanteService = new EstudanteService();
-
+const usuarioService = new UsuarioService();
 export function CursoListItemHome({ curso: c }) {
 
     const { usuario } = useAuthContext();
+
+    const autor = usuarioService.findById(c.autor.id);
 
     return (
         <article className="course-card">
@@ -19,7 +21,7 @@ export function CursoListItemHome({ curso: c }) {
                         <figure className={`icon-badge provider-icon provider-${c.cor}`} aria-hidden="true">
                         <BookOpen size={17} />
                         </figure>
-                        <p className="course-provider">{c.autor.nome}</p>
+                        <p className="course-provider">{autor.nome}</p>
                     </div>
                 )}
                 {usuario && validateTipoUsuario.estudante.test(usuario.tipoUsuario) && (

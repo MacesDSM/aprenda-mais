@@ -15,7 +15,7 @@ export function CursoListView() {
 
     // Aplica os filtros usando o Builder Pattern
     const cursos = new CursoSpecifications(listaCursos)
-      .specOrdemByData(searchParams.get("ordem") || "asc")
+      .specOrdemByData(searchParams.get("ordem"))
       .specCategoriaId(searchParams.get("categoriaId"))
       .specStatusCurso(statusCurso.aprovado)
       .build();
