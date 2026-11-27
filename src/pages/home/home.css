@@ -63,7 +63,13 @@
 .course-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .course-grid > li { display: flex; min-width: 0; }
 .course-card { display: flex; width: 100%; min-height: 240px; flex-direction: column; align-items: flex-start; padding: 18px; background: #fff; border: 1px solid var(--home-border); border-radius: 10px; }
-.course-card-top { display: flex; width: 100%; align-items: center; gap: 9px; }
+.course-card-top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  gap: 9px;
+}
 .provider-icon { width: 32px; height: 32px; }
 .provider-blue { color: #315cff; background: #eef2ff; }
 .provider-purple { color: #8153d6; background: #f3edff; }

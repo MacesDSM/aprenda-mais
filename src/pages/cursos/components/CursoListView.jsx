@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { useState } from "react";
 import { CursoService, statusCurso } from "../../../service";
 import { CursoItem } from "./CursoItem";
@@ -56,41 +56,6 @@ export function CursoListView() {
                 </p>
               )}
             </section>
-            {/* Fim cards demonstrativos.*/}
-
-            <div className="cursos-paginacao">
-              <p>
-                <strong>{cursos.length}</strong> cursos disponíveis
-              </p>
-              <nav aria-label="Paginação dos cursos">
-                <button
-                  className="botao-pagina"
-                  type="button"
-                  aria-label="Página anterior"
-                  disabled={paginaAtual === 1}
-                  onClick={() => setPaginaAtual(paginaAtual - 1)}
-                >
-                  <ChevronLeft size={15} aria-hidden="true" />
-                </button>
-
-                  <button
-                    className={`botao-pagina${" pagina-ativa"}`}
-                    type="button"
-                    onClick={() => setPaginaAtual(pagina)}
-                  >
-                    0
-                  </button>
-                <button
-                  className="botao-pagina"
-                  type="button"
-                  aria-label="Próxima página"
-                  disabled={false}
-                  onClick={() => setPaginaAtual(paginaAtual + 1)}
-                >
-                  <ChevronRight size={15} aria-hidden="true" />
-                </button>
-              </nav>
-            </div>
         </div>
     )
 }

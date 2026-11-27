@@ -1,27 +1,24 @@
 import { ChevronRight } from "lucide-react";
 import { CategoriaCursoService } from "../../../service"
 import { DynamicIcon } from "lucide-react/dynamic";
+import { useNavigate } from "react-router";
 
 const categoriaService = new CategoriaCursoService();
 
 export function CategoriaHome() {
 
     const categories = categoriaService.findAll();
+    const navigate = useNavigate();
 
     return (
         <section className="category-section content-width" aria-label="Categorias de cursos">
             <ul className="category-grid">
-            {categories.map(({ nome, descricao, nomeIcone, cor, filter }) => (
-                <li key={nome}>
+            {categories.map(({ id, nome, descricao, nomeIcone, cor }) => (
+                <li key={id}>
                 <button
                     className={`category-card category-${cor}`}
                     type="button"
-                    onClick={() => {
-                    setActiveFilter(filter)
-                    setSearchTerm("")
-                    setQuery("")
-                    document.getElementById("cursos")?.scrollIntoView({ behavior: "smooth" })
-                    }}
+                    onClick={() => navigate(`/cursos?categoriaId=${id}`)}
                 >
                     <figure className="icon-badge category-icon" aria-hidden="true">
                         <DynamicIcon name={nomeIcone} size={19} />

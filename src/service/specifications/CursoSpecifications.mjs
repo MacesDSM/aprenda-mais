@@ -48,6 +48,18 @@ export class CursoSpecifications extends BaseSpecifications {
         }
         return this;
     }
+
+    /**
+     * Limita o número de cursos na lista.
+     * @param {number} limit 
+     * @returns {CursoSpecifications}
+     */
+    specLimit(limit) {
+        if(limit) {
+            this.lista = this.lista.slice(0, limit);
+        }
+        return this;
+    }
 }
 
 
